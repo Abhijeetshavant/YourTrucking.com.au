@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-[#0A0E17] text-white font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-[#FF4C00]/30 text-white;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111620;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 76, 0, 0.5);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 76, 0, 0.7);
+  }
+}
+
+@layer components {
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+  }
+
+  .gradient-text {
+    background: linear-gradient(to right, #fff, #C0C0C0, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glow-orange {
+    box-shadow: 0 0 30px rgba(255, 76, 0, 0.2);
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 30px rgba(0, 194, 255, 0.2);
+  }
+}
