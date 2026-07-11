@@ -17,9 +17,26 @@ import {
   Check,
   Star,
   Info,
+  X,
+  Building2,
+  Landmark,
+  HardHat,
 } from "lucide-react";
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
+
+// Import all service images from assets
+import trucking1 from "../assets/trucking1.jpg";
+import interstate from "../assets/interstate.png";
+import frontviewtruck from "../assets/frontviewtruck.jpg";
+import heavyload from "../assets/heavyload.jpg";
+import muncipleConsole from "../assets/muncipalConsole.jpg";
+import government from "../assets/government.jpg";
+import oversize from "../assets/oversize.jpg";
+import standtruck2 from "../assets/standtruck2.jpg";
+import roadTrain from "../assets/roadTrain.jpg";
+// Add this if you have a warehouse loading image
+import warehouseloading from "../assets/warehouse.jpg"; // or use any available image
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -32,7 +49,7 @@ const Services = () => {
       title: "Local Transport",
       category: "General Freight",
       description:
-        "Same-day and next-day delivery within metropolitan and regional areas.",
+        "Same-day and next-day delivery within metropolitan and regional areas with real-time GPS tracking.",
       features: [
         "Same-day delivery options",
         "Real-time GPS tracking",
@@ -41,8 +58,9 @@ const Services = () => {
         "Proof of delivery",
         "Competitive local rates",
       ],
-      image: "/images/services/local-transport.jpg",
+      image: trucking1,
       stats: { deliveries: "50,000+", satisfaction: "99%", avgTime: "4 hours" },
+      badge: "Popular",
     },
     {
       id: "interstate-freight",
@@ -50,7 +68,7 @@ const Services = () => {
       title: "Interstate Freight",
       category: "Linehaul",
       description:
-        "Reliable interstate transport connecting all major Australian cities.",
+        "Reliable interstate transport connecting all major Australian cities with daily departures.",
       features: [
         "Daily departures",
         "Express and economy options",
@@ -59,12 +77,13 @@ const Services = () => {
         "Multi-modal solutions",
         "Nationwide coverage",
       ],
-      image: "/images/services/interstate.jpg",
+      image: interstate,
       stats: {
         deliveries: "25,000+",
         satisfaction: "98%",
         avgTime: "2-5 days",
       },
+      badge: "Nationwide",
     },
     {
       id: "mining-logistics",
@@ -72,7 +91,7 @@ const Services = () => {
       title: "Mining Logistics",
       category: "Industrial",
       description:
-        "Heavy equipment transport and mine site logistics across Australia.",
+        "Heavy equipment transport and mine site logistics across Australia with specialized vehicles.",
       features: [
         "Mine spec vehicles",
         "Remote area capability",
@@ -81,12 +100,13 @@ const Services = () => {
         "Site induction ready",
         "Emergency response",
       ],
-      image: "/images/services/mining.jpg",
+      image: oversize,
       stats: {
         deliveries: "10,000+",
         satisfaction: "99.5%",
         avgTime: "Custom",
       },
+      badge: "Specialized",
     },
     {
       id: "heavy-machinery",
@@ -94,7 +114,7 @@ const Services = () => {
       title: "Heavy Machinery",
       category: "Specialized",
       description:
-        "Transport of oversized and heavy machinery with specialized equipment.",
+        "Transport of oversized and heavy machinery with specialized equipment and route planning.",
       features: [
         "Low loaders available",
         "Permit management",
@@ -103,12 +123,13 @@ const Services = () => {
         "Crane assistance",
         "Full insurance cover",
       ],
-      image: "/images/services/heavy-machinery.jpg",
+      image: heavyload,
       stats: {
         deliveries: "5,000+",
         satisfaction: "100%",
         avgTime: "Project based",
       },
+      badge: "Heavy Duty",
     },
     {
       id: "dangerous-goods",
@@ -116,7 +137,7 @@ const Services = () => {
       title: "Dangerous Goods",
       category: "Specialized",
       description:
-        "Certified transport of hazardous materials with full safety compliance.",
+        "Certified transport of hazardous materials with full safety compliance and trained handlers.",
       features: [
         "ADR compliant",
         "Trained handlers",
@@ -125,12 +146,13 @@ const Services = () => {
         "Real-time monitoring",
         "Full documentation",
       ],
-      image: "/images/services/dangerous-goods.jpg",
+      image: standtruck2,
       stats: {
         deliveries: "8,000+",
         satisfaction: "99.8%",
         avgTime: "Scheduled",
       },
+      badge: "Certified",
     },
     {
       id: "cold-chain",
@@ -138,7 +160,7 @@ const Services = () => {
       title: "Cold Chain Logistics",
       category: "Temperature Controlled",
       description:
-        "Temperature-controlled transport for perishable and sensitive goods.",
+        "Temperature-controlled transport for perishable and sensitive goods with real-time monitoring.",
       features: [
         "-25°C to +25°C range",
         "Real-time temperature monitoring",
@@ -147,12 +169,13 @@ const Services = () => {
         "Backup systems",
         "HACCP certified",
       ],
-      image: "/images/services/cold-chain.jpg",
+      image: frontviewtruck,
       stats: {
         deliveries: "15,000+",
         satisfaction: "99.2%",
         avgTime: "2-24 hours",
       },
+      badge: "Temperature",
     },
     {
       id: "container-transport",
@@ -169,12 +192,13 @@ const Services = () => {
         "Wharf cartage",
         "Import/Export support",
       ],
-      image: "/images/services/container.jpg",
+      image: roadTrain,
       stats: {
         deliveries: "30,000+",
         satisfaction: "97.5%",
         avgTime: "Same day",
       },
+      badge: "Port",
     },
     {
       id: "warehouse-distribution",
@@ -182,7 +206,7 @@ const Services = () => {
       title: "Warehouse & Distribution",
       category: "Storage Solutions",
       description:
-        "Complete warehousing and distribution solutions across Australia.",
+        "Complete warehousing and distribution solutions with 50,000 sqm storage capacity.",
       features: [
         "50,000 sqm storage",
         "Pick and pack",
@@ -191,12 +215,13 @@ const Services = () => {
         "Last mile delivery",
         "Returns management",
       ],
-      image: "/images/services/warehouse.jpg",
+      image: warehouseloading,
       stats: {
         deliveries: "100,000+",
         satisfaction: "98.5%",
         avgTime: "24-48 hours",
       },
+      badge: "Storage",
     },
     {
       id: "express-delivery",
@@ -204,7 +229,7 @@ const Services = () => {
       title: "Express Delivery",
       category: "Priority",
       description:
-        "Urgent deliveries with guaranteed timeframes for critical shipments.",
+        "Urgent deliveries with guaranteed timeframes and 1-hour pickup for critical shipments.",
       features: [
         "1-hour pickup",
         "Direct routes",
@@ -213,12 +238,13 @@ const Services = () => {
         "Guaranteed delivery",
         "24/7 availability",
       ],
-      image: "/images/services/express.jpg",
+      image: frontviewtruck,
       stats: {
         deliveries: "20,000+",
         satisfaction: "99.9%",
         avgTime: "2-8 hours",
       },
+      badge: "Priority",
     },
     {
       id: "oversized-cargo",
@@ -226,7 +252,7 @@ const Services = () => {
       title: "Oversized Cargo",
       category: "Specialized",
       description:
-        "Transport solutions for oversized, overmass, and abnormal loads.",
+        "Transport solutions for oversized, overmass, and abnormal loads with full project management.",
       features: [
         "Pilot escorts",
         "Route surveys",
@@ -235,55 +261,59 @@ const Services = () => {
         "Night moves available",
         "Full project management",
       ],
-      image: "/images/services/oversized.jpg",
+      image: heavyload,
       stats: {
         deliveries: "3,000+",
         satisfaction: "100%",
         avgTime: "Project based",
       },
+      badge: "Oversize",
     },
     {
-      id: "construction-materials",
-      icon: Factory,
-      title: "Construction Materials",
-      category: "Building",
+      id: "local-council",
+      icon: Building2,
+      title: "Local Council",
+      category: "Government",
       description:
-        "Reliable delivery of construction materials to building sites.",
+        "Dedicated municipal logistics for local councils including waste management and infrastructure.",
       features: [
-        "Tipper trucks",
-        "Crane trucks",
-        "Site delivery",
-        "Bulk transport",
-        "Just-in-time delivery",
-        "Project scheduling",
+        "Waste management transport",
+        "Road maintenance logistics",
+        "Community infrastructure",
+        "Emergency response",
+        "Seasonal services",
+        "Compliance assured",
       ],
-      image: "/images/services/construction.jpg",
+      image: muncipleConsole,
       stats: {
-        deliveries: "40,000+",
-        satisfaction: "98.8%",
+        deliveries: "12,000+",
+        satisfaction: "99%",
         avgTime: "Scheduled",
       },
+      badge: "Government",
     },
     {
-      id: "business-logistics",
-      icon: Star,
-      title: "Business Logistics",
+      id: "government-contract",
+      icon: Landmark,
+      title: "Government Contract",
       category: "Enterprise",
-      description: "Tailored logistics solutions for businesses of all sizes.",
+      description:
+        "Secure transport solutions for federal and state government departments and defence logistics.",
       features: [
-        "Dedicated fleet",
-        "Account management",
-        "Custom reporting",
-        "Volume discounts",
-        "Integration API",
-        "Flexible contracts",
+        "Security cleared",
+        "Defence logistics",
+        "Healthcare transport",
+        "Critical infrastructure",
+        "Compliance assured",
+        "Confidential handling",
       ],
-      image: "/images/services/business.jpg",
+      image: government,
       stats: {
-        deliveries: "75,000+",
-        satisfaction: "99.1%",
+        deliveries: "8,000+",
+        satisfaction: "99.5%",
         avgTime: "Custom",
       },
+      badge: "Secure",
     },
   ];
 
@@ -293,7 +323,7 @@ const Services = () => {
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/services-hero.jpg"
+            src={trucking1}
             alt="Services"
             className="w-full h-full object-cover"
           />
@@ -314,7 +344,7 @@ const Services = () => {
               <span className="gradient-text">Solutions</span>
             </h1>
             <p className="text-xl text-accent-silver/80 max-w-3xl mx-auto">
-              From local deliveries to complex mining logistics, we provide
+              From local deliveries to complex government contracts, we provide
               end-to-end transport solutions tailored to your industry.
             </p>
           </motion.div>
@@ -334,27 +364,45 @@ const Services = () => {
                 transition={{ delay: index * 0.05 }}
                 onClick={() => setSelectedService(service)}
               >
-                <GlassCard className="cursor-pointer group h-full" tilt glow>
-                  <div className="relative overflow-hidden rounded-xl mb-6 h-48">
+                <GlassCard
+                  className="cursor-pointer group h-full overflow-hidden"
+                  tilt
+                  glow
+                >
+                  <div className="relative overflow-hidden rounded-xl mb-6 h-48 -mx-0 -mt-0">
                     <img
                       src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      onError={(e) => {
+                        e.target.style.display = "none";
+                        e.target.parentElement.style.background =
+                          "linear-gradient(135deg, #1a1a2e, #16213e)";
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
+
+                    {/* Category Badge */}
                     <div className="absolute top-4 left-4">
                       <span className="glass px-3 py-1 rounded-full text-xs text-accent-blue">
                         {service.category}
                       </span>
                     </div>
+
+                    {/* Service Badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className="glass px-3 py-1 rounded-full text-xs text-accent-orange">
+                        {service.badge}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-4 px-1">
                     <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent-orange/20 transition-colors">
                       <service.icon className="text-accent-orange" size={24} />
                     </div>
                     <div>
-                      <h3 className="font-heading text-xl font-bold mb-2">
+                      <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-accent-orange transition-colors">
                         {service.title}
                       </h3>
                       <p className="text-accent-silver/60 text-sm mb-4">
@@ -368,7 +416,7 @@ const Services = () => {
                             <div className="text-lg font-bold gradient-text">
                               {value}
                             </div>
-                            <div className="text-xs text-accent-silver/40 capitalize">
+                            <div className="text-[10px] text-accent-silver/40 capitalize">
                               {key}
                             </div>
                           </div>
@@ -376,7 +424,7 @@ const Services = () => {
                       </div>
 
                       <motion.button
-                        className="text-accent-orange text-sm flex items-center gap-2 group/btn"
+                        className="text-accent-orange text-sm flex items-center gap-2 group/btn mb-2"
                         whileHover={{ gap: 8 }}
                       >
                         Learn More
@@ -415,14 +463,24 @@ const Services = () => {
                   src={selectedService.image}
                   alt={selectedService.title}
                   className="w-full h-full object-cover rounded-t-3xl"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.style.background =
+                      "linear-gradient(135deg, #1a1a2e, #16213e)";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent rounded-t-3xl" />
                 <button
                   className="absolute top-4 right-4 glass p-2 rounded-full hover:bg-white/20 transition-colors"
                   onClick={() => setSelectedService(null)}
                 >
-                  ✕
+                  <X size={20} />
                 </button>
+                <div className="absolute top-4 left-4">
+                  <span className="glass px-3 py-1.5 rounded-full text-sm text-accent-orange">
+                    {selectedService.badge}
+                  </span>
+                </div>
               </div>
 
               <div className="p-8">
@@ -496,7 +554,7 @@ const Services = () => {
                   </div>
                 </div>
 
-                <div className="mt-8 flex gap-4">
+                <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <MagneticButton variant="primary" size="lg" icon={ArrowRight}>
                     Book This Service
                   </MagneticButton>

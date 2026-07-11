@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Truck, Users, Building2, Award } from "lucide-react";
+import { Truck, Users, Star, Award } from "lucide-react";
 import AnimatedCounter from "../ui/AnimatedCounter";
 
 const Stats = () => {
   const stats = [
     { icon: Truck, value: 2500, suffix: "+", label: "Verified Trucks" },
     { icon: Users, value: 5000, suffix: "+", label: "Happy Clients" },
-    { icon: Building2, value: 100, suffix: "+", label: "Cities Covered" },
+    { icon: Star, value: 4.9, suffix: "/5", label: "Client Rating" },
     { icon: Award, value: 35, suffix: "+", label: "Years Experience" },
   ];
 

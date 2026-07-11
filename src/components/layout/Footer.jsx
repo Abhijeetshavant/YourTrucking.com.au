@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Truck, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Truck, Mail, Phone, MapPin, ArrowRight, Heart } from "lucide-react";
 
 // Custom Social Media Icons (since lucide-react doesn't include branded icons)
 const Facebook = ({ size = 18, className }) => (
@@ -243,6 +243,36 @@ const Footer = () => {
                 Terms & Conditions
               </Link>
             </div>
+          </div>
+
+          {/* ========== STARK AI TECHNOLOGY CREDIT ========== */}
+          <div className="mt-4 pt-4 border-t border-white/[0.03] text-center">
+            <motion.p
+              className="text-xs text-accent-silver/30 flex items-center justify-center gap-1.5"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+            >
+              Created
+              <Heart
+                size={12}
+                className="text-red-400 fill-red-400 animate-pulse"
+              />
+              by
+              <a
+                href="#"
+                className="text-accent-orange/60 hover:text-accent-orange transition-colors font-medium"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                StarkAiTechnology
+              </a>
+              <span className="text-accent-silver/20">|</span>
+              <span className="text-accent-silver/30">
+                {new Date().getFullYear()}
+              </span>
+            </motion.p>
           </div>
         </div>
       </div>

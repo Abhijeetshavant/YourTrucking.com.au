@@ -22,7 +22,7 @@ const WhatsAppButton = () => {
   const [step, setStep] = useState(1);
 
   // CHANGE THIS TO YOUR ACTUAL WHATSAPP NUMBER
-  const phoneNumber = "61400123456"; // Australia: 61XXXXXXXXX | India: 91XXXXXXXXXX
+  const phoneNumber = "9644000090";
   const companyName = "Yours Trucking Australia";
 
   const handleQuickMessage = (text) => {

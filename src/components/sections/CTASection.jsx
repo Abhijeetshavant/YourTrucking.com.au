@@ -76,7 +76,7 @@ const CTASection = () => {
               Get Free Quote
             </MagneticButton>
             <MagneticButton variant="secondary" size="xl" icon={Phone}>
-              Call 1300 TRUCKING
+              Call 9644000090
             </MagneticButton>
           </motion.div>
 
@@ -94,7 +94,7 @@ const CTASection = () => {
                 size={32}
               />
               <h3 className="font-heading font-bold mb-2">Call Us</h3>
-              <p className="text-accent-silver/60 text-sm">1300 TRUCKING</p>
+              <p className="text-accent-silver/60 text-sm">9644000090</p>
               <p className="text-accent-silver/40 text-xs mt-1">
                 24/7 Support Available
               </p>

@@ -18,6 +18,12 @@ import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 import AnimatedCounter from "../components/ui/AnimatedCounter";
 
+// ✅ CORRECT: Import images as variables
+import KanwarSingh from "../assets/KanwarSingh.png";
+import Abhijeet from "../assets/Abhijeet.jpeg";
+// Import a fallback image for other team members
+import trucking1 from "../assets/trucking1.jpg";
+
 const About = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -101,29 +107,30 @@ const About = () => {
     },
   ];
 
+  // ✅ FIXED: Use imported variables, not strings
   const leadership = [
     {
-      name: "James Mitchell",
+      name: "Kanwar Singh",
       role: "CEO & Founder",
-      image: "/images/team/ceo.jpg",
+      image: KanwarSingh, // ✅ Using imported variable
       bio: "40+ years in logistics",
     },
     {
-      name: "Sarah Chen",
-      role: "COO",
-      image: "/images/team/coo.jpg",
-      bio: "Former Toll Group executive",
+      name: "Abhijeet",
+      role: "Technical Director",
+      image: Abhijeet, // ✅ Using imported variable
+      bio: "Full stack web developer",
     },
     {
       name: "Michael Torres",
       role: "CTO",
-      image: "/images/team/cto.jpg",
+      image: trucking1, // ✅ Using fallback image
       bio: "Silicon Valley veteran",
     },
     {
       name: "Emma Williams",
       role: "CFO",
-      image: "/images/team/cfo.jpg",
+      image: trucking1, // ✅ Using fallback image
       bio: "Ex-PwC partner",
     },
   ];
@@ -134,9 +141,14 @@ const About = () => {
       <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/about-hero.jpg"
+            src={trucking1} // ✅ Use imported image for hero
             alt="Yours Trucking History"
             className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.parentElement.style.background =
+                "linear-gradient(135deg, #1a1a2e, #16213e)";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/70 to-transparent" />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_#0A0E17_90%)]" />
@@ -225,7 +237,6 @@ const About = () => {
       {/* Company Timeline */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,76,0,0.05),_transparent_70%)]" />
-
         <div className="max-w-7xl mx-auto px-4 lg:px-8 relative">
           <motion.div
             className="text-center mb-20"
@@ -242,16 +253,12 @@ const About = () => {
           </motion.div>
 
           <motion.div className="relative" style={{ opacity: timelineOpacity }}>
-            {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-accent-orange via-accent-blue to-accent-orange" />
-
             <div className="space-y-16">
               {milestones.map((milestone, index) => (
                 <motion.div
                   key={milestone.year}
-                  className={`flex items-center ${
-                    index % 2 === 0 ? "flex-row" : "flex-row-reverse"
-                  }`}
+                  className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -272,11 +279,9 @@ const About = () => {
                       </p>
                     </GlassCard>
                   </div>
-
                   <div className="relative flex-shrink-0">
                     <div className="w-4 h-4 bg-accent-orange rounded-full glow-orange" />
                   </div>
-
                   <div className="flex-1" />
                 </motion.div>
               ))}
@@ -298,7 +303,6 @@ const About = () => {
               Our Core <span className="gradient-text">Values</span>
             </h2>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {values.map((value, index) => (
               <motion.div
@@ -351,6 +355,19 @@ const About = () => {
                       src={leader.image}
                       alt={leader.name}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      onError={(e) => {
+                        // Fallback: Show initials if image fails
+                        e.target.style.display = "none";
+                        e.target.parentElement.style.background =
+                          "linear-gradient(135deg, #FF4C00, #FF8C00)";
+                        e.target.parentElement.style.display = "flex";
+                        e.target.parentElement.style.alignItems = "center";
+                        e.target.parentElement.style.justifyContent = "center";
+                        e.target.parentElement.innerHTML = `<span style="color:white;font-size:2rem;font-weight:bold">${leader.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}</span>`;
+                      }}
                     />
                   </div>
                   <h3 className="font-heading text-xl font-bold">
@@ -380,7 +397,6 @@ const About = () => {
               Certifications & <span className="gradient-text">Compliance</span>
             </h2>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {

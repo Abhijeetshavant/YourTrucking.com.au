@@ -10,12 +10,17 @@ import {
   Check,
   Upload,
   CreditCard,
+  MessageSquare,
+  CheckCircle,
+  XCircle,
 } from "lucide-react";
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 
 const Booking = () => {
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
   const [formData, setFormData] = useState({
     customerName: "",
     company: "",
@@ -36,14 +41,103 @@ const Booking = () => {
   });
 
   const totalSteps = 4;
+  const whatsappNumber = "919644000090"; // Indian format: 91 + number
 
   const nextStep = () => setStep(Math.min(step + 1, totalSteps));
   const prevStep = () => setStep(Math.max(step - 1, 1));
 
+  const getTruckTypeLabel = (type) => {
+    const labels = {
+      heavy_rigid: "Heavy Rigid",
+      semi_trailer: "Semi Trailer",
+      b_double: "B-Double",
+      road_train: "Road Train",
+      flatbed: "Flatbed",
+      refrigerated: "Refrigerated",
+    };
+    return labels[type] || type;
+  };
+
+  const getCargoTypeLabel = (type) => {
+    const labels = {
+      construction: "Construction Materials",
+      industrial: "Industrial Equipment",
+      mining: "Mining Machinery",
+      container: "Container Freight",
+      dangerous: "Dangerous Goods",
+      other: "Other",
+    };
+    return labels[type] || type;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Booking submitted:", formData);
-    // API call to submit booking
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Build comprehensive WhatsApp message
+    const whatsappMessage = encodeURIComponent(
+      `*🚛 New Booking Request - Yours Trucking Australia*\n\n` +
+        `*📋 Booking Summary*\n` +
+        `Date: ${formData.pickupDate || "Not specified"}\n` +
+        `Time: ${formData.pickupTime || "Not specified"}\n\n` +
+        `*👤 Customer Information*\n` +
+        `Name: ${formData.customerName}\n` +
+        `Company: ${formData.company || "Not provided"}\n` +
+        `Phone: ${formData.phone}\n` +
+        `Email: ${formData.email}\n\n` +
+        `*📍 Route Details*\n` +
+        `Pickup: ${formData.pickupAddress}\n` +
+        `Destination: ${formData.destinationAddress}\n\n` +
+        `*📦 Cargo Information*\n` +
+        `Truck Type: ${getTruckTypeLabel(formData.truckType)}\n` +
+        `Cargo Type: ${getCargoTypeLabel(formData.cargoType)}\n` +
+        `Weight: ${formData.cargoWeight || "Not specified"} kg\n` +
+        `Insurance: ${formData.insuranceRequired ? "✅ Yes" : "❌ No"}\n` +
+        `Special Instructions: ${formData.specialInstructions || "None"}\n\n` +
+        `*💳 Payment Method*\n` +
+        `${formData.paymentMethod === "invoice" ? "📄 Invoice (Net 30)" : "💳 Credit Card"}\n\n` +
+        `---\n` +
+        `📅 Submitted: ${new Date().toLocaleString()}\n` +
+        `🌐 Source: Website Booking Form\n` +
+        `💰 Pricing: To be discussed (Negotiable)`,
+    );
+
+    // Open WhatsApp
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+    try {
+      window.open(whatsappUrl, "_blank");
+      setSubmitStatus("success");
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          customerName: "",
+          company: "",
+          phone: "",
+          email: "",
+          pickupAddress: "",
+          destinationAddress: "",
+          pickupDate: "",
+          pickupTime: "",
+          truckType: "",
+          cargoWeight: "",
+          cargoType: "",
+          dimensions: { length: "", width: "", height: "" },
+          specialInstructions: "",
+          insuranceRequired: false,
+          paymentMethod: "invoice",
+          cargoImages: [],
+        });
+        setStep(1);
+        setSubmitStatus(null);
+      }, 3000);
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,7 +153,7 @@ const Booking = () => {
             Book Your <span className="gradient-text">Transport</span>
           </h1>
           <p className="text-accent-silver/60">
-            Quick and easy booking in just a few steps
+            Quick and easy booking - We'll contact you with pricing
           </p>
         </motion.div>
 
@@ -69,7 +163,7 @@ const Booking = () => {
             {["Details", "Route", "Cargo", "Confirm"].map((label, index) => (
               <div key={index} className="flex items-center">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all duration-300 ${
                     step > index + 1
                       ? "bg-accent-orange text-white"
                       : step === index + 1
@@ -88,7 +182,7 @@ const Booking = () => {
                 </span>
                 {index < 3 && (
                   <div
-                    className={`w-12 md:w-24 h-0.5 mx-2 ${
+                    className={`w-12 md:w-24 h-0.5 mx-2 transition-all duration-300 ${
                       step > index + 1 ? "bg-accent-orange" : "bg-white/10"
                     }`}
                   />
@@ -101,6 +195,47 @@ const Booking = () => {
         {/* Form */}
         <GlassCard>
           <form onSubmit={handleSubmit}>
+            {/* Success/Error Messages */}
+            {submitStatus === "success" && (
+              <motion.div
+                className="mb-6 p-4 rounded-xl bg-green-400/10 border border-green-400/30 flex items-center gap-3"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <CheckCircle
+                  className="text-green-400 flex-shrink-0"
+                  size={20}
+                />
+                <div>
+                  <p className="text-green-400 font-medium text-sm">
+                    Booking Request Sent!
+                  </p>
+                  <p className="text-green-400/70 text-xs mt-1">
+                    WhatsApp opened with your details. We'll confirm pricing
+                    shortly.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+
+            {submitStatus === "error" && (
+              <motion.div
+                className="mb-6 p-4 rounded-xl bg-red-400/10 border border-red-400/30 flex items-center gap-3"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <XCircle className="text-red-400 flex-shrink-0" size={20} />
+                <div>
+                  <p className="text-red-400 font-medium text-sm">
+                    Failed to send
+                  </p>
+                  <p className="text-red-400/70 text-xs mt-1">
+                    Please try again or call +61 9644000090
+                  </p>
+                </div>
+              </motion.div>
+            )}
+
             {/* Step 1: Customer Details */}
             {step === 1 && (
               <motion.div
@@ -120,7 +255,8 @@ const Booking = () => {
                     <input
                       type="text"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
+                      placeholder="Enter your full name"
                       value={formData.customerName}
                       onChange={(e) =>
                         setFormData({
@@ -136,7 +272,8 @@ const Booking = () => {
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
+                      placeholder="Company name (optional)"
                       value={formData.company}
                       onChange={(e) =>
                         setFormData({ ...formData, company: e.target.value })
@@ -150,7 +287,8 @@ const Booking = () => {
                     <input
                       type="tel"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
+                      placeholder="+61 4XX XXX XXX"
                       value={formData.phone}
                       onChange={(e) =>
                         setFormData({ ...formData, phone: e.target.value })
@@ -164,7 +302,8 @@ const Booking = () => {
                     <input
                       type="email"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
+                      placeholder="your@email.com"
                       value={formData.email}
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
@@ -194,7 +333,7 @@ const Booking = () => {
                     <input
                       type="text"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                       placeholder="Enter full pickup address"
                       value={formData.pickupAddress}
                       onChange={(e) =>
@@ -212,7 +351,7 @@ const Booking = () => {
                     <input
                       type="text"
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                       placeholder="Enter full destination address"
                       value={formData.destinationAddress}
                       onChange={(e) =>
@@ -231,7 +370,7 @@ const Booking = () => {
                       <input
                         type="date"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                         value={formData.pickupDate}
                         onChange={(e) =>
                           setFormData({
@@ -247,7 +386,7 @@ const Booking = () => {
                       </label>
                       <input
                         type="time"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                         value={formData.pickupTime}
                         onChange={(e) =>
                           setFormData({
@@ -280,19 +419,25 @@ const Booking = () => {
                     </label>
                     <select
                       required
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                       value={formData.truckType}
                       onChange={(e) =>
                         setFormData({ ...formData, truckType: e.target.value })
                       }
                     >
                       <option value="">Select truck type</option>
-                      <option value="heavy_rigid">Heavy Rigid</option>
-                      <option value="semi_trailer">Semi Trailer</option>
-                      <option value="b_double">B-Double</option>
-                      <option value="road_train">Road Train</option>
-                      <option value="flatbed">Flatbed</option>
-                      <option value="refrigerated">Refrigerated</option>
+                      <option value="heavy_rigid">
+                        Heavy Rigid (25,000 kg)
+                      </option>
+                      <option value="semi_trailer">
+                        Semi Trailer (34,000 kg)
+                      </option>
+                      <option value="b_double">B-Double (46,000 kg)</option>
+                      <option value="road_train">Road Train (85,000 kg)</option>
+                      <option value="flatbed">Flatbed (30,000 kg)</option>
+                      <option value="refrigerated">
+                        Refrigerated (24,000 kg)
+                      </option>
                     </select>
                   </div>
                   <div>
@@ -300,7 +445,7 @@ const Booking = () => {
                       Cargo Type
                     </label>
                     <select
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
                       value={formData.cargoType}
                       onChange={(e) =>
                         setFormData({ ...formData, cargoType: e.target.value })
@@ -323,7 +468,8 @@ const Booking = () => {
                     </label>
                     <input
                       type="number"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none text-white"
+                      placeholder="Approximate weight"
                       value={formData.cargoWeight}
                       onChange={(e) =>
                         setFormData({
@@ -341,7 +487,8 @@ const Booking = () => {
                   </label>
                   <textarea
                     rows="3"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none resize-none"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none resize-none text-white"
+                    placeholder="Any special requirements or instructions..."
                     value={formData.specialInstructions}
                     onChange={(e) =>
                       setFormData({
@@ -356,7 +503,7 @@ const Booking = () => {
                   <input
                     type="checkbox"
                     id="insurance"
-                    className="w-4 h-4 rounded border-white/10 bg-white/5"
+                    className="w-4 h-4 rounded border-white/10 bg-white/5 accent-accent-orange"
                     checked={formData.insuranceRequired}
                     onChange={(e) =>
                       setFormData({
@@ -369,7 +516,7 @@ const Booking = () => {
                     htmlFor="insurance"
                     className="text-sm text-accent-silver"
                   >
-                    Add additional insurance coverage (+$350)
+                    Add insurance coverage (Recommended)
                   </label>
                 </div>
               </motion.div>
@@ -387,50 +534,129 @@ const Booking = () => {
                 </h2>
 
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-sm text-accent-silver/60">Customer</p>
-                      <p className="font-medium">{formData.customerName}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-silver/60">Company</p>
-                      <p className="font-medium">{formData.company || "N/A"}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-silver/60">Pickup</p>
-                      <p className="font-medium">{formData.pickupAddress}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-silver/60">
-                        Destination
-                      </p>
-                      <p className="font-medium">
-                        {formData.destinationAddress}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-silver/60">Date</p>
-                      <p className="font-medium">{formData.pickupDate}</p>
-                    </div>
-                    <div>
-                      <p className="text-sm text-accent-silver/60">
-                        Truck Type
-                      </p>
-                      <p className="font-medium">
-                        {formData.truckType.replace("_", " ").toUpperCase()}
-                      </p>
+                  {/* Customer Info */}
+                  <div className="p-4 rounded-xl bg-white/5">
+                    <h3 className="text-sm font-bold text-accent-orange mb-3">
+                      👤 Customer Details
+                    </h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <p className="text-accent-silver/60">Name</p>
+                        <p className="font-medium text-white">
+                          {formData.customerName}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Company</p>
+                        <p className="font-medium text-white">
+                          {formData.company || "N/A"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Phone</p>
+                        <p className="font-medium text-white">
+                          {formData.phone}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Email</p>
+                        <p className="font-medium text-white">
+                          {formData.email}
+                        </p>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-xl bg-accent-orange/10 border border-accent-orange/30">
-                    <p className="text-sm text-accent-orange mb-2">
-                      Estimated Price
+                  {/* Route Info */}
+                  <div className="p-4 rounded-xl bg-white/5">
+                    <h3 className="text-sm font-bold text-accent-blue mb-3">
+                      📍 Route Details
+                    </h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <p className="text-accent-silver/60">Pickup</p>
+                        <p className="font-medium text-white">
+                          {formData.pickupAddress}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Destination</p>
+                        <p className="font-medium text-white">
+                          {formData.destinationAddress}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Date</p>
+                        <p className="font-medium text-white">
+                          {formData.pickupDate || "TBD"}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Time</p>
+                        <p className="font-medium text-white">
+                          {formData.pickupTime || "TBD"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cargo Info */}
+                  <div className="p-4 rounded-xl bg-white/5">
+                    <h3 className="text-sm font-bold text-green-400 mb-3">
+                      📦 Cargo Details
+                    </h3>
+                    <div className="grid grid-cols-2 gap-3 text-sm">
+                      <div>
+                        <p className="text-accent-silver/60">Truck Type</p>
+                        <p className="font-medium text-white">
+                          {getTruckTypeLabel(formData.truckType)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Cargo Type</p>
+                        <p className="font-medium text-white">
+                          {getCargoTypeLabel(formData.cargoType)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Weight</p>
+                        <p className="font-medium text-white">
+                          {formData.cargoWeight || "TBD"} kg
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-accent-silver/60">Insurance</p>
+                        <p className="font-medium text-white">
+                          {formData.insuranceRequired ? "✅ Yes" : "❌ No"}
+                        </p>
+                      </div>
+                    </div>
+                    {formData.specialInstructions && (
+                      <div className="mt-3 pt-3 border-t border-white/5">
+                        <p className="text-accent-silver/60 text-xs">
+                          Special Instructions
+                        </p>
+                        <p className="font-medium text-white text-sm">
+                          {formData.specialInstructions}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Pricing Note */}
+                  <div className="p-4 rounded-xl bg-accent-orange/5 border border-accent-orange/20 text-center">
+                    <MessageSquare
+                      className="text-accent-orange mx-auto mb-2"
+                      size={24}
+                    />
+                    <p className="text-sm text-accent-silver mb-1">
+                      Our team will contact you with the best pricing
                     </p>
-                    <p className="font-display text-3xl font-bold text-white">
-                      $2,450.00
+                    <p className="text-lg font-bold gradient-text">
+                      Competitive & Negotiable Rates
                     </p>
-                    <p className="text-xs text-accent-silver/60 mt-1">
-                      Final price may vary based on exact route and requirements
+                    <p className="text-xs text-accent-silver/60 mt-2">
+                      You'll receive a personalized quote via WhatsApp
                     </p>
                   </div>
                 </div>
@@ -443,7 +669,7 @@ const Booking = () => {
                 <button
                   type="button"
                   onClick={prevStep}
-                  className="glass glass-hover px-6 py-3 rounded-xl"
+                  className="glass glass-hover px-6 py-3 rounded-xl text-sm"
                 >
                   Back
                 </button>
@@ -459,8 +685,13 @@ const Booking = () => {
                     Continue
                   </MagneticButton>
                 ) : (
-                  <MagneticButton type="submit" variant="primary" icon={Check}>
-                    Confirm Booking
+                  <MagneticButton
+                    type="submit"
+                    variant="primary"
+                    icon={MessageSquare}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : "Send via WhatsApp"}
                   </MagneticButton>
                 )}
               </div>

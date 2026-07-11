@@ -22,6 +22,15 @@ import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 import ScrollReveal from "../components/ui/ScrollReveal";
 
+// Import all fleet images from assets
+import oversize from "../assets/oversize.jpg";
+import standtruck2 from "../assets/standtruck2.jpg";
+import frontviewtruck from "../assets/frontviewtruck.jpg";
+import roadTrain from "../assets/roadTrain.jpg";
+import trucking1 from "../assets/trucking1.jpg";
+import heavyload from "../assets/heavyload.jpg";
+import interstate from "../assets/interstate.png";
+
 const Fleet = () => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [filterType, setFilterType] = useState("all");
@@ -44,11 +53,10 @@ const Fleet = () => {
         "Easy Loading",
         "GPS Tracking",
       ],
-      image:
-        "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800",
+      image: trucking1,
       dimensions: { length: "6m", width: "2.4m", height: "2.8m" },
       rating: 4.8,
-      price: "$150/hour",
+      // price: "$150/hour",
       description:
         "Perfect for urban deliveries and small to medium cargo. Efficient, maneuverable, and reliable.",
       specs: {
@@ -73,11 +81,10 @@ const Fleet = () => {
         "GPS Tracking",
         "Air Suspension",
       ],
-      image:
-        "https://images.unsplash.com/photo-1586191582057-0d62cc4cf77d?w=800",
+      image: standtruck2,
       dimensions: { length: "8m", width: "2.4m", height: "3.2m" },
       rating: 4.9,
-      price: "$200/hour",
+      // price: "$200/hour",
       description:
         "Ideal for regional deliveries and medium-sized cargo. Versatile and dependable for various applications.",
       specs: {
@@ -97,11 +104,10 @@ const Fleet = () => {
       available: 25,
       total: 30,
       features: ["Heavy Duty", "Crane Compatible", "Long Range", "Sleeper Cab"],
-      image:
-        "https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=800",
+      image: oversize,
       dimensions: { length: "12m", width: "2.5m", height: "3.8m" },
       rating: 5.0,
-      price: "$280/hour",
+      // price: "$280/hour",
       description:
         "Built for heavy loads and demanding conditions. Perfect for construction and industrial applications.",
       specs: {
@@ -126,11 +132,10 @@ const Fleet = () => {
         "Sleeper Cab",
         "Advanced Safety",
       ],
-      image:
-        "https://images.unsplash.com/photo-1586191582158-5ca3d710ca24?w=800",
+      image: interstate,
       dimensions: { length: "19m", width: "2.5m", height: "4.2m" },
       rating: 4.9,
-      price: "$350/hour",
+      // price: "$350/hour",
       description:
         "The backbone of interstate freight. Efficient, powerful, and designed for long-haul operations.",
       specs: {
@@ -155,11 +160,10 @@ const Fleet = () => {
         "Advanced Safety",
         "Double Trailer",
       ],
-      image:
-        "https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?w=800",
+      image: frontviewtruck,
       dimensions: { length: "26m", width: "2.5m", height: "4.3m" },
       rating: 4.8,
-      price: "$450/hour",
+      // price: "$450/hour",
       description:
         "Maximum efficiency for high-volume freight. Two trailers for double the capacity.",
       specs: {
@@ -184,11 +188,10 @@ const Fleet = () => {
         "Mining Spec",
         "Multiple Trailers",
       ],
-      image:
-        "https://images.unsplash.com/photo-1566933293975-683a1aa18fb1?w=800",
+      image: roadTrain,
       dimensions: { length: "53m", width: "2.5m", height: "4.5m" },
       rating: 5.0,
-      price: "$650/hour",
+      //  price: "$650/hour",
       description:
         "The ultimate heavy haulage solution. Built for Australia's toughest conditions and longest routes.",
       specs: {
@@ -208,11 +211,10 @@ const Fleet = () => {
       available: 18,
       total: 22,
       features: ["Open Deck", "Side Loading", "Versatile", "Crane Compatible"],
-      image:
-        "https://images.unsplash.com/photo-1586191582215-c1448efb90fa?w=800",
+      image: heavyload,
       dimensions: { length: "13m", width: "2.5m", height: "1.5m" },
       rating: 4.7,
-      price: "$300/hour",
+      //  price: "$300/hour",
       description:
         "Versatile open-deck transport for oversized and irregularly shaped cargo.",
       specs: {
@@ -237,11 +239,10 @@ const Fleet = () => {
         "Real-time Monitoring",
         "Multi-zone",
       ],
-      image:
-        "https://images.unsplash.com/photo-1566933293042-8b8e3c5d7e1b?w=800",
+      image: frontviewtruck,
       dimensions: { length: "14m", width: "2.5m", height: "4m" },
       rating: 4.9,
-      price: "$400/hour",
+      //  price: "$400/hour",
       description:
         "State-of-the-art refrigerated transport for temperature-sensitive cargo.",
       specs: {
@@ -292,7 +293,7 @@ const Fleet = () => {
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/50 to-primary" />
           <img
-            src="https://images.unsplash.com/photo-1586191582057-0d62cc4cf77d?w=1920"
+            src={roadTrain}
             alt="Fleet"
             className="w-full h-full object-cover opacity-30"
           />
@@ -323,7 +324,6 @@ const Fleet = () => {
       <section className="py-8 border-b border-white/5 sticky top-20 z-30 bg-primary/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Category Filters */}
             <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
               {categories.map((category) => (
                 <motion.button
@@ -342,7 +342,6 @@ const Fleet = () => {
               ))}
             </div>
 
-            {/* Search & Sort */}
             <div className="flex gap-3 w-full md:w-auto">
               <div className="relative flex-1 md:w-64">
                 <Search
@@ -352,13 +351,13 @@ const Fleet = () => {
                 <input
                   type="text"
                   placeholder="Search fleet..."
-                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 focus:border-accent-orange focus:outline-none transition-colors text-sm"
+                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2.5 focus:border-accent-orange focus:outline-none transition-colors text-sm text-white"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <select
-                className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 focus:border-accent-orange focus:outline-none text-sm"
+                className="bg-white/5 border border-white/10 rounded-xl px-3 py-2.5 focus:border-accent-orange focus:outline-none text-sm text-white"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
@@ -383,17 +382,20 @@ const Fleet = () => {
                   whileHover={{ y: -5 }}
                 >
                   <GlassCard className="h-full group overflow-hidden" tilt glow>
-                    {/* Vehicle Image */}
                     <div className="relative h-56 overflow-hidden rounded-xl mb-6">
                       <img
                         src={vehicle.image}
                         alt={vehicle.name}
                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                         loading="lazy"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.parentElement.style.background =
+                            "linear-gradient(135deg, #1a1a2e, #16213e)";
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
 
-                      {/* Status Badge */}
                       <div className="absolute top-4 left-4">
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 ${
@@ -417,7 +419,6 @@ const Fleet = () => {
                         </span>
                       </div>
 
-                      {/* Rating Badge */}
                       <div className="absolute top-4 right-4">
                         <div className="glass px-3 py-1.5 rounded-full flex items-center gap-1.5">
                           <Star
@@ -431,7 +432,6 @@ const Fleet = () => {
                       </div>
                     </div>
 
-                    {/* Vehicle Info */}
                     <div className="space-y-4">
                       <div>
                         <div className="flex items-center justify-between mb-2">
@@ -447,7 +447,6 @@ const Fleet = () => {
                         </p>
                       </div>
 
-                      {/* Quick Specs */}
                       <div className="grid grid-cols-2 gap-3">
                         <div className="flex items-center gap-2 p-2 rounded-lg bg-white/5">
                           <Weight
@@ -487,7 +486,6 @@ const Fleet = () => {
                         </div>
                       </div>
 
-                      {/* Features */}
                       <div className="flex flex-wrap gap-2">
                         {vehicle.features.slice(0, 3).map((feature, i) => (
                           <span
@@ -504,7 +502,6 @@ const Fleet = () => {
                         )}
                       </div>
 
-                      {/* Action Button */}
                       <motion.button
                         className="w-full glass glass-hover py-3 rounded-xl text-sm font-medium text-accent-orange flex items-center justify-center gap-2"
                         whileHover={{ gap: 10 }}
@@ -519,7 +516,6 @@ const Fleet = () => {
             ))}
           </div>
 
-          {/* No Results */}
           {filteredVehicles.length === 0 && (
             <motion.div
               className="text-center py-20"
@@ -562,7 +558,6 @@ const Fleet = () => {
               exit={{ scale: 0.9, y: 20, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={() => setSelectedVehicle(null)}
                 className="absolute top-4 right-4 z-10 glass p-2 rounded-full hover:bg-white/20 transition-colors"
@@ -570,18 +565,21 @@ const Fleet = () => {
                 <X size={20} />
               </button>
 
-              {/* Vehicle Image */}
               <div className="relative h-72 md:h-96">
                 <img
                   src={selectedVehicle.image}
                   alt={selectedVehicle.name}
                   className="w-full h-full object-cover rounded-t-3xl"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                    e.target.parentElement.style.background =
+                      "linear-gradient(135deg, #1a1a2e, #16213e)";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent rounded-t-3xl" />
               </div>
 
               <div className="p-8">
-                {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                   <div>
                     <span className="text-accent-blue text-sm">
@@ -619,7 +617,6 @@ const Fleet = () => {
                   {selectedVehicle.description}
                 </p>
 
-                {/* Specifications */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div>
                     <h3 className="font-heading text-xl font-bold mb-4">
@@ -647,24 +644,19 @@ const Fleet = () => {
                       Dimensions & Capacity
                     </h3>
                     <div className="space-y-3">
-                      <div className="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                        <span className="text-accent-silver/60">Length</span>
-                        <span className="font-medium">
-                          {selectedVehicle.dimensions.length}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                        <span className="text-accent-silver/60">Width</span>
-                        <span className="font-medium">
-                          {selectedVehicle.dimensions.width}
-                        </span>
-                      </div>
-                      <div className="flex justify-between items-center p-3 rounded-xl bg-white/5">
-                        <span className="text-accent-silver/60">Height</span>
-                        <span className="font-medium">
-                          {selectedVehicle.dimensions.height}
-                        </span>
-                      </div>
+                      {Object.entries(selectedVehicle.dimensions).map(
+                        ([key, value]) => (
+                          <div
+                            key={key}
+                            className="flex justify-between items-center p-3 rounded-xl bg-white/5"
+                          >
+                            <span className="text-accent-silver/60 capitalize">
+                              {key}
+                            </span>
+                            <span className="font-medium">{value}</span>
+                          </div>
+                        ),
+                      )}
                       <div className="flex justify-between items-center p-3 rounded-xl bg-white/5">
                         <span className="text-accent-silver/60">Capacity</span>
                         <span className="font-medium">
@@ -681,7 +673,6 @@ const Fleet = () => {
                   </div>
                 </div>
 
-                {/* Features */}
                 <div className="mb-8">
                   <h3 className="font-heading text-xl font-bold mb-4">
                     Features
@@ -702,7 +693,6 @@ const Fleet = () => {
                   </div>
                 </div>
 
-                {/* CTA */}
                 <div className="flex gap-4">
                   <MagneticButton
                     variant="primary"

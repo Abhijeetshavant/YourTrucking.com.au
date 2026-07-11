@@ -117,11 +117,11 @@ const Navbar = () => {
               </Link>
 
               <a
-                href="tel:1300878254"
+                href="tel:9644000090"
                 className="flex items-center gap-2 text-sm text-accent-silver/80 hover:text-accent-orange transition-colors"
               >
                 <Phone size={16} />
-                <span>1300 TRUCK</span>
+                <span>9644000090</span>
               </a>
 
               <Link to="/booking">

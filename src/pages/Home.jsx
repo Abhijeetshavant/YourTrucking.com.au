@@ -11,6 +11,7 @@ import FAQ from "../components/sections/FAQ";
 import WhyChooseUs from "../components/sections/WhyChooseUs";
 import LiveTrackingPreview from "../components/sections/LiveTrackingPreview";
 import CTASection from "../components/sections/CTASection";
+import VideoShowcase from "../components/sections/VideoShowcase";
 
 const Home = () => {
   useEffect(() => {
@@ -30,6 +31,7 @@ const Home = () => {
       <Services />
       <WhyChooseUs />
       <Fleet />
+      <VideoShowcase />
       <QuoteCalculator />
       <LiveTrackingPreview />
       <Testimonials />

@@ -11,6 +11,17 @@ import {
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 
+// Import blog images from assets
+import trucking1 from "../assets/trucking1.jpg";
+import interstate from "../assets/interstate.png";
+import frontviewtruck from "../assets/frontviewtruck.jpg";
+import heavyload from "../assets/heavyload.jpg";
+import oversize from "../assets/oversize.jpg";
+import standtruck2 from "../assets/standtruck2.jpg";
+import roadTrain from "../assets/roadTrain.jpg";
+import muncipleConsole from "../assets/muncipalConsole.jpg";
+import government from "../assets/government.jpg";
+
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -30,12 +41,12 @@ const Blog = () => {
       id: 1,
       title: "The Future of Australian Logistics: AI and Automation in 2025",
       excerpt:
-        "Discover how artificial intelligence is transforming the logistics landscape across Australia...",
+        "Discover how artificial intelligence is transforming the logistics landscape across Australia with smart routing and predictive analytics...",
       category: "Technology",
       author: "James Mitchell",
       date: "Dec 20, 2024",
       readTime: "8 min read",
-      image: "/images/blog/ai-logistics.jpg",
+      image: frontviewtruck,
       featured: true,
       tags: ["AI", "Automation", "Future Tech"],
     },
@@ -43,12 +54,12 @@ const Blog = () => {
       id: 2,
       title: "Sustainable Trucking: Our Path to Carbon Neutral by 2030",
       excerpt:
-        "How Yours Trucking is leading the charge towards environmentally sustainable freight transport...",
+        "How Yours Trucking is leading the charge towards environmentally sustainable freight transport with electric and hydrogen vehicles...",
       category: "Industry News",
       author: "Sarah Chen",
       date: "Dec 18, 2024",
       readTime: "6 min read",
-      image: "/images/blog/sustainability.jpg",
+      image: interstate,
       featured: true,
       tags: ["Sustainability", "Green Logistics", "Electric Trucks"],
     },
@@ -56,12 +67,12 @@ const Blog = () => {
       id: 3,
       title: "Navigating Mining Logistics in Remote Australia",
       excerpt:
-        "Expert insights on managing complex supply chains in Australia's most challenging terrains...",
+        "Expert insights on managing complex supply chains in Australia's most challenging terrains and remote mining operations...",
       category: "Logistics",
       author: "Michael Torres",
       date: "Dec 15, 2024",
       readTime: "10 min read",
-      image: "/images/blog/mining-logistics.jpg",
+      image: oversize,
       featured: false,
       tags: ["Mining", "Remote Operations", "Heavy Haulage"],
     },
@@ -69,12 +80,12 @@ const Blog = () => {
       id: 4,
       title: "How Real-Time Tracking Reduces Supply Chain Costs",
       excerpt:
-        "The financial benefits of implementing advanced tracking systems in your logistics operations...",
+        "The financial benefits of implementing advanced tracking systems in your logistics operations and improving delivery efficiency...",
       category: "Supply Chain",
       author: "Emma Williams",
       date: "Dec 12, 2024",
       readTime: "7 min read",
-      image: "/images/blog/tracking.jpg",
+      image: trucking1,
       featured: false,
       tags: ["GPS Tracking", "Cost Reduction", "Efficiency"],
     },
@@ -82,12 +93,12 @@ const Blog = () => {
       id: 5,
       title: "Safety First: Our Zero-Harm Commitment in Heavy Haulage",
       excerpt:
-        "Inside our comprehensive safety protocols that protect drivers, cargo, and communities...",
+        "Inside our comprehensive safety protocols that protect drivers, cargo, and communities across Australian highways...",
       category: "Safety",
       author: "David Thompson",
       date: "Dec 10, 2024",
       readTime: "5 min read",
-      image: "/images/blog/safety.jpg",
+      image: heavyload,
       featured: false,
       tags: ["Safety", "Compliance", "Driver Training"],
     },
@@ -95,14 +106,53 @@ const Blog = () => {
       id: 6,
       title: "Interstate Freight: Optimizing Cross-Border Logistics",
       excerpt:
-        "Strategies for efficient interstate freight movement across Australian state lines...",
+        "Strategies for efficient interstate freight movement across Australian state lines and border regulations...",
       category: "Transport",
       author: "James Mitchell",
       date: "Dec 8, 2024",
       readTime: "9 min read",
-      image: "/images/blog/interstate.jpg",
+      image: standtruck2,
       featured: false,
       tags: ["Interstate", "Cross-Border", "Regulations"],
+    },
+    {
+      id: 7,
+      title: "Local Council Logistics: Supporting Community Infrastructure",
+      excerpt:
+        "How municipal logistics services are evolving to support growing communities with waste management and road maintenance...",
+      category: "Industry News",
+      author: "Sarah Chen",
+      date: "Dec 5, 2024",
+      readTime: "6 min read",
+      image: muncipleConsole,
+      featured: false,
+      tags: ["Local Council", "Infrastructure", "Community"],
+    },
+    {
+      id: 8,
+      title: "Government Contracts: Meeting Compliance Standards",
+      excerpt:
+        "Understanding the requirements for secure government logistics contracts and maintaining compliance...",
+      category: "Logistics",
+      author: "Michael Torres",
+      date: "Dec 1, 2024",
+      readTime: "8 min read",
+      image: government,
+      featured: false,
+      tags: ["Government", "Compliance", "Security"],
+    },
+    {
+      id: 9,
+      title: "Road Train Operations: Mastering Australia's Long Haul Routes",
+      excerpt:
+        "Behind the scenes of operating Australia's iconic road trains across the country's longest freight routes...",
+      category: "Transport",
+      author: "David Thompson",
+      date: "Nov 28, 2024",
+      readTime: "12 min read",
+      image: roadTrain,
+      featured: false,
+      tags: ["Road Train", "Long Haul", "Outback"],
     },
   ];
 
@@ -112,9 +162,16 @@ const Blog = () => {
       post.category.toLowerCase() === selectedCategory.toLowerCase();
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some((tag) =>
+        tag.toLowerCase().includes(searchQuery.toLowerCase()),
+      );
     return matchesCategory && matchesSearch;
   });
+
+  // Get featured posts
+  const featuredPosts = filteredPosts.filter((post) => post.featured);
+  const regularPosts = filteredPosts.filter((post) => !post.featured);
 
   return (
     <div className="bg-primary min-h-screen pt-24">
@@ -134,7 +191,7 @@ const Blog = () => {
             </h1>
             <p className="text-accent-silver/60 text-lg max-w-2xl mx-auto">
               Expert insights on logistics, transport innovation, and industry
-              trends
+              trends from Australia's leading freight network.
             </p>
           </motion.div>
 
@@ -154,13 +211,13 @@ const Blog = () => {
                   />
                   <input
                     type="text"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                     placeholder="Search articles..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
-                <div className="flex gap-2 overflow-x-auto">
+                <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
                   {categories.map((category) => (
                     <button
                       key={category}
@@ -183,13 +240,13 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Featured Posts */}
+      {/* Blog Content */}
       <section className="pb-16">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {filteredPosts
-              .filter((post) => post.featured)
-              .map((post, index) => (
+          {/* Featured Posts */}
+          {featuredPosts.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              {featuredPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -197,23 +254,33 @@ const Blog = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
                 >
-                  <GlassCard className="overflow-hidden group cursor-pointer">
+                  <GlassCard
+                    className="overflow-hidden group cursor-pointer h-full"
+                    tilt
+                    glow
+                  >
                     <div className="relative h-64 overflow-hidden rounded-xl mb-6">
                       <img
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.parentElement.style.background =
+                            "linear-gradient(135deg, #1a1a2e, #16213e)";
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
                       <div className="absolute top-4 left-4">
-                        <span className="bg-accent-orange text-white px-3 py-1 rounded-full text-xs">
+                        <span className="bg-accent-orange text-white px-3 py-1 rounded-full text-xs font-medium">
                           Featured
                         </span>
                       </div>
                     </div>
 
                     <div className="space-y-4">
-                      <div className="flex items-center gap-4 text-sm text-accent-silver/60">
+                      <div className="flex items-center gap-4 text-sm text-accent-silver/60 flex-wrap">
                         <span className="flex items-center gap-1">
                           <Calendar size={14} />
                           {post.date}
@@ -233,8 +300,8 @@ const Blog = () => {
                       </h2>
                       <p className="text-accent-silver/60">{post.excerpt}</p>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex gap-2">
+                      <div className="flex items-center justify-between flex-wrap gap-3">
+                        <div className="flex gap-2 flex-wrap">
                           {post.tags.map((tag) => (
                             <span
                               key={tag}
@@ -245,7 +312,7 @@ const Blog = () => {
                           ))}
                         </div>
                         <motion.button
-                          className="text-accent-orange flex items-center gap-2"
+                          className="text-accent-orange flex items-center gap-2 text-sm font-medium"
                           whileHover={{ gap: 8 }}
                         >
                           Read More
@@ -256,13 +323,13 @@ const Blog = () => {
                   </GlassCard>
                 </motion.div>
               ))}
-          </div>
+            </div>
+          )}
 
           {/* Regular Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredPosts
-              .filter((post) => !post.featured)
-              .map((post, index) => (
+          {regularPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {regularPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -270,19 +337,42 @@ const Blog = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <GlassCard className="group cursor-pointer h-full">
+                  <GlassCard
+                    className="group cursor-pointer h-full overflow-hidden"
+                    tilt
+                    glow
+                  >
                     <div className="relative h-48 overflow-hidden rounded-xl mb-4">
                       <img
                         src={post.image}
                         alt={post.title}
                         className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.parentElement.style.background =
+                            "linear-gradient(135deg, #1a1a2e, #16213e)";
+                        }}
                       />
+                      <div className="absolute top-3 left-3">
+                        <span className="text-[10px] glass px-2 py-1 rounded-full text-accent-orange">
+                          {post.category}
+                        </span>
+                      </div>
                     </div>
 
                     <div className="space-y-3">
-                      <span className="text-xs text-accent-blue">
-                        {post.category}
-                      </span>
+                      <div className="flex items-center gap-3 text-xs text-accent-silver/40">
+                        <span className="flex items-center gap-1">
+                          <Calendar size={12} />
+                          {post.date}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Clock size={12} />
+                          {post.readTime}
+                        </span>
+                      </div>
+
                       <h3 className="font-heading text-lg font-bold group-hover:text-accent-orange transition-colors line-clamp-2">
                         {post.title}
                       </h3>
@@ -290,22 +380,63 @@ const Blog = () => {
                         {post.excerpt}
                       </p>
 
-                      <div className="flex items-center justify-between text-xs text-accent-silver/40">
-                        <span>{post.date}</span>
-                        <span>{post.readTime}</span>
+                      <div className="flex items-center justify-between pt-2">
+                        <div className="flex gap-1.5 flex-wrap">
+                          {post.tags.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] glass px-2 py-0.5 rounded-full text-accent-blue"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <motion.button
+                          className="text-accent-orange text-sm flex items-center gap-1"
+                          whileHover={{ gap: 6 }}
+                        >
+                          Read
+                          <ArrowRight size={14} />
+                        </motion.button>
                       </div>
                     </div>
                   </GlassCard>
                 </motion.div>
               ))}
-          </div>
+            </div>
+          ) : (
+            <motion.div
+              className="text-center py-20"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Search
+                className="text-accent-silver/20 mx-auto mb-4"
+                size={64}
+              />
+              <p className="text-accent-silver/60 text-lg">
+                No articles match your search
+              </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory("all");
+                  setSearchQuery("");
+                }}
+                className="text-accent-orange mt-4 underline"
+              >
+                Clear filters
+              </button>
+            </motion.div>
+          )}
 
           {/* Load More */}
-          <div className="text-center mt-12">
-            <MagneticButton variant="secondary" size="lg" icon={ArrowRight}>
-              Load More Articles
-            </MagneticButton>
-          </div>
+          {filteredPosts.length > 0 && (
+            <div className="text-center mt-12">
+              <MagneticButton variant="secondary" size="lg" icon={ArrowRight}>
+                Load More Articles
+              </MagneticButton>
+            </div>
+          )}
         </div>
       </section>
     </div>

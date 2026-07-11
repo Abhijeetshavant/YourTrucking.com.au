@@ -11,6 +11,8 @@ import {
   Users,
   Shield,
   ArrowRight,
+  CheckCircle,
+  XCircle,
 } from "lucide-react";
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
@@ -25,41 +27,71 @@ const Contact = () => {
     message: "",
     inquiryType: "general",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+
+  const whatsappNumber = "919644000090"; // Indian number format (91 + number)
+  // For Australia: "619644000090"
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    // Build WhatsApp message with all form data
+    const whatsappMessage = encodeURIComponent(
+      `*📬 New Inquiry - Yours Trucking Australia*\n\n` +
+        `*Inquiry Type:* ${formData.inquiryType.toUpperCase()}\n\n` +
+        `*👤 Personal Information*\n` +
+        `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Phone: ${formData.phone || "Not provided"}\n` +
+        `Company: ${formData.company || "Not provided"}\n\n` +
+        `*📋 Inquiry Details*\n` +
+        `Subject: ${formData.subject || "Not provided"}\n` +
+        `Message: ${formData.message}\n\n` +
+        `---\n` +
+        `📅 Submitted: ${new Date().toLocaleString()}\n` +
+        `🌐 Source: Website Contact Form`,
+    );
+
+    // Open WhatsApp with the message
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+    try {
+      // Open WhatsApp in new tab
+      window.open(whatsappUrl, "_blank");
+
+      // Show success message
+      setSubmitStatus("success");
+
+      // Reset form after 2 seconds
+      setTimeout(() => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          subject: "",
+          message: "",
+          inquiryType: "general",
+        });
+        setSubmitStatus(null);
+      }, 3000);
+    } catch (error) {
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const offices = [
     {
-      city: "Sydney (Head Office)",
-      address: "Level 25, 123 George Street, Sydney NSW 2000",
-      phone: "+61 2 8000 1234",
-      email: "sydney@yourstrucking.com.au",
-      hours: "Mon-Fri: 8:00 AM - 6:00 PM",
-    },
-    {
-      city: "Melbourne",
+      city: "Melbourne (Head Office)",
       address: "Suite 15, 456 Collins Street, Melbourne VIC 3000",
-      phone: "+61 3 9000 5678",
-      email: "melbourne@yourstrucking.com.au",
-      hours: "Mon-Fri: 8:00 AM - 6:00 PM",
-    },
-    {
-      city: "Brisbane",
-      address: "Unit 8, 789 Ann Street, Brisbane QLD 4000",
-      phone: "+61 7 3000 9012",
-      email: "brisbane@yourstrucking.com.au",
-      hours: "Mon-Fri: 8:00 AM - 5:00 PM",
-    },
-    {
-      city: "Perth",
-      address: "Level 10, 321 Hay Street, Perth WA 6000",
-      phone: "+61 8 6000 3456",
-      email: "perth@yourstrucking.com.au",
-      hours: "Mon-Fri: 8:00 AM - 5:00 PM",
+      phone: "+61 9644000090",
+      email: "info@yourstrucking.com.au",
+      hours: "24/7",
     },
   ];
 
@@ -97,6 +129,47 @@ const Contact = () => {
                   Send Us a Message
                 </h2>
 
+                {/* Success/Error Messages */}
+                {submitStatus === "success" && (
+                  <motion.div
+                    className="mb-6 p-4 rounded-xl bg-green-400/10 border border-green-400/30 flex items-center gap-3"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <CheckCircle
+                      className="text-green-400 flex-shrink-0"
+                      size={20}
+                    />
+                    <div>
+                      <p className="text-green-400 font-medium text-sm">
+                        Message Sent Successfully!
+                      </p>
+                      <p className="text-green-400/70 text-xs mt-1">
+                        WhatsApp opened with your inquiry. We'll respond
+                        shortly.
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+
+                {submitStatus === "error" && (
+                  <motion.div
+                    className="mb-6 p-4 rounded-xl bg-red-400/10 border border-red-400/30 flex items-center gap-3"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <XCircle className="text-red-400 flex-shrink-0" size={20} />
+                    <div>
+                      <p className="text-red-400 font-medium text-sm">
+                        Failed to send
+                      </p>
+                      <p className="text-red-400/70 text-xs mt-1">
+                        Please try again or call us at +61 9644000090
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
@@ -106,7 +179,7 @@ const Contact = () => {
                       <input
                         type="text"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                         placeholder="Your name"
                         value={formData.name}
                         onChange={(e) =>
@@ -121,7 +194,7 @@ const Contact = () => {
                       <input
                         type="email"
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                         placeholder="your@email.com"
                         value={formData.email}
                         onChange={(e) =>
@@ -138,7 +211,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="tel"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                         placeholder="+61 4XX XXX XXX"
                         value={formData.phone}
                         onChange={(e) =>
@@ -152,7 +225,7 @@ const Contact = () => {
                       </label>
                       <input
                         type="text"
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                         placeholder="Company name"
                         value={formData.company}
                         onChange={(e) =>
@@ -167,7 +240,7 @@ const Contact = () => {
                       Inquiry Type
                     </label>
                     <select
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                       value={formData.inquiryType}
                       onChange={(e) =>
                         setFormData({
@@ -191,7 +264,7 @@ const Contact = () => {
                     </label>
                     <input
                       type="text"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors text-white"
                       placeholder="How can we help?"
                       value={formData.subject}
                       onChange={(e) =>
@@ -207,7 +280,7 @@ const Contact = () => {
                     <textarea
                       required
                       rows="5"
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors resize-none"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-accent-orange focus:outline-none transition-colors resize-none text-white"
                       placeholder="Tell us about your requirements..."
                       value={formData.message}
                       onChange={(e) =>
@@ -217,12 +290,14 @@ const Contact = () => {
                   </div>
 
                   <MagneticButton
+                    type="submit"
                     variant="primary"
                     size="lg"
-                    icon={Send}
+                    icon={isSubmitting ? MessageSquare : Send}
                     className="w-full"
+                    disabled={isSubmitting}
                   >
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send via WhatsApp"}
                   </MagneticButton>
                 </form>
               </GlassCard>
@@ -241,37 +316,56 @@ const Contact = () => {
                   Quick Contact
                 </h3>
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center">
+                  <a
+                    href="tel:+619644000090"
+                    className="flex items-center gap-4 group cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center group-hover:bg-accent-orange/20 transition-colors">
                       <Phone className="text-accent-orange" size={24} />
                     </div>
                     <div>
                       <p className="text-sm text-accent-silver/60">
                         24/7 Support Line
                       </p>
-                      <p className="font-bold">1300 TRUCKING</p>
+                      <p className="font-bold group-hover:text-accent-orange transition-colors">
+                        +61 9644000090
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center">
+                  <a
+                    href="mailto:info@yourstrucking.com.au"
+                    className="flex items-center gap-4 group cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center group-hover:bg-accent-blue/20 transition-colors">
                       <Mail className="text-accent-blue" size={24} />
                     </div>
                     <div>
                       <p className="text-sm text-accent-silver/60">Email</p>
-                      <p className="font-bold">info@yourstrucking.com.au</p>
+                      <p className="font-bold group-hover:text-accent-blue transition-colors">
+                        info@yourstrucking.com.au
+                      </p>
                     </div>
-                  </div>
+                  </a>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-green-400/10 flex items-center justify-center">
+                  <a
+                    href={`https://wa.me/919644000090`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 group cursor-pointer"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-green-400/10 flex items-center justify-center group-hover:bg-green-400/20 transition-colors">
                       <MessageSquare className="text-green-400" size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-accent-silver/60">Live Chat</p>
-                      <p className="font-bold">Available 24/7</p>
+                      <p className="text-sm text-accent-silver/60">
+                        WhatsApp Chat
+                      </p>
+                      <p className="font-bold group-hover:text-green-400 transition-colors">
+                        Chat on WhatsApp
+                      </p>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </GlassCard>
 
@@ -287,9 +381,11 @@ const Contact = () => {
                   For urgent matters requiring immediate attention, our
                   emergency response team is available 24/7.
                 </p>
-                <MagneticButton variant="primary" size="md" icon={Phone}>
-                  1800 EMERGENCY
-                </MagneticButton>
+                <a href="tel:+619644000090">
+                  <MagneticButton variant="primary" size="md" icon={Phone}>
+                    +61 9644000090
+                  </MagneticButton>
+                </a>
               </GlassCard>
 
               {/* Business Hours */}
@@ -303,15 +399,15 @@ const Contact = () => {
                     <span className="text-accent-silver/60">
                       Monday - Friday
                     </span>
-                    <span>8:00 AM - 6:00 PM</span>
+                    <span>Open 24 Hours</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-accent-silver/60">Saturday</span>
-                    <span>8:00 AM - 2:00 PM</span>
+                    <span>Open 24 Hours</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-accent-silver/60">Sunday</span>
-                    <span className="text-accent-orange">Emergency Only</span>
+                    <span>Open 24 Hours</span>
                   </div>
                 </div>
               </GlassCard>
@@ -346,26 +442,38 @@ const Contact = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <GlassCard className="h-full">
-                  <Building2 className="text-accent-orange mb-4" size={32} />
+                <GlassCard className="h-full group hover:border-accent-orange/30 transition-all">
+                  <Building2
+                    className="text-accent-orange mb-4 group-hover:scale-110 transition-transform"
+                    size={32}
+                  />
                   <h3 className="font-heading text-lg font-bold mb-3">
                     {office.city}
                   </h3>
                   <div className="space-y-2 text-sm text-accent-silver/60">
                     <p className="flex items-start gap-2">
-                      <MapPin size={16} className="mt-1 flex-shrink-0" />
+                      <MapPin
+                        size={16}
+                        className="mt-1 flex-shrink-0 text-accent-orange"
+                      />
                       {office.address}
                     </p>
-                    <p className="flex items-center gap-2">
+                    <a
+                      href={`tel:${office.phone.replace(/\s/g, "")}`}
+                      className="flex items-center gap-2 hover:text-accent-orange transition-colors"
+                    >
                       <Phone size={16} />
                       {office.phone}
-                    </p>
-                    <p className="flex items-center gap-2">
+                    </a>
+                    <a
+                      href={`mailto:${office.email}`}
+                      className="flex items-center gap-2 hover:text-accent-blue transition-colors"
+                    >
                       <Mail size={16} />
                       {office.email}
-                    </p>
+                    </a>
                     <p className="flex items-center gap-2">
-                      <Clock size={16} />
+                      <Clock size={16} className="text-green-400" />
                       {office.hours}
                     </p>
                   </div>
@@ -376,13 +484,39 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
+      {/* Map Section - Using Google Maps Embed */}
       <section className="h-[500px] relative">
-        <div className="absolute inset-0 bg-primary/50 flex items-center justify-center">
-          <div className="text-center">
-            <MapPin className="text-accent-orange mx-auto mb-4" size={48} />
-            <p className="text-2xl font-bold mb-2">Interactive Map</p>
-            <p className="text-accent-silver/60">Google Maps Integration</p>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.0!2d144.9631!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2e3b0e0e0e0!2s456%20Collins%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2sin!4v1700000000000"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Yours Trucking Australia - Melbourne Office"
+          className="absolute inset-0"
+        />
+        {/* Map Overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
+          <div className="absolute bottom-6 left-6 z-10 pointer-events-auto">
+            <GlassCard className="p-4 backdrop-blur-xl">
+              <p className="text-sm font-bold text-white mb-1">
+                📍 Melbourne Head Office
+              </p>
+              <p className="text-xs text-accent-silver/60">
+                456 Collins Street, Melbourne VIC 3000
+              </p>
+              <a
+                href="https://maps.google.com/?q=456+Collins+Street+Melbourne+VIC+3000"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent-orange text-xs mt-2 inline-block hover:underline"
+              >
+                Open in Google Maps →
+              </a>
+            </GlassCard>
           </div>
         </div>
       </section>
