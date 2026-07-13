@@ -76,7 +76,7 @@ const CTASection = () => {
               Get Free Quote
             </MagneticButton>
             <MagneticButton variant="secondary" size="xl" icon={Phone}>
-              Call 9644000090
+              Call 0416879499
             </MagneticButton>
           </motion.div>
 

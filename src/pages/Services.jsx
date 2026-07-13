@@ -25,18 +25,18 @@ import {
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 
-// Import all service images from assets
-import trucking1 from "../assets/trucking1.jpg";
-import interstate from "../assets/interstate.png";
-import frontviewtruck from "../assets/frontviewtruck.jpg";
-import heavyload from "../assets/heavyload.jpg";
-import muncipleConsole from "../assets/muncipalConsole.jpg";
-import government from "../assets/government.jpg";
-import oversize from "../assets/oversize.jpg";
-import standtruck2 from "../assets/standtruck2.jpg";
-import roadTrain from "../assets/roadTrain.jpg";
-// Add this if you have a warehouse loading image
-import warehouseloading from "../assets/warehouse.jpg"; // or use any available image
+// // Import all service images from assets
+// import trucking1 from "../assets/trucking1.jpg";
+// import interstate from "../assets/interstate.png";
+// import frontviewtruck from "../assets/frontviewtruck.jpg";
+// import heavyload from "../assets/heavyload.jpg";
+// import muncipleConsole from "../assets/muncipalConsole.jpg";import warehouseloading from "../assets/warehouse.jpg"; // or use any available image
+
+// import government from "../assets/government.jpg";
+// import oversize from "../assets/oversize.jpg";
+// import standtruck2 from "../assets/standtruck2.jpg";
+// import roadTrain from "../assets/roadTrain.jpg";
+// // Add this if you have a warehouse loading image
 
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
@@ -58,7 +58,7 @@ const Services = () => {
         "Proof of delivery",
         "Competitive local rates",
       ],
-      image: trucking1,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg",
       stats: { deliveries: "50,000+", satisfaction: "99%", avgTime: "4 hours" },
       badge: "Popular",
     },
@@ -77,7 +77,7 @@ const Services = () => {
         "Multi-modal solutions",
         "Nationwide coverage",
       ],
-      image: interstate,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/interstate.png",
       stats: {
         deliveries: "25,000+",
         satisfaction: "98%",
@@ -100,7 +100,7 @@ const Services = () => {
         "Site induction ready",
         "Emergency response",
       ],
-      image: oversize,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg",
       stats: {
         deliveries: "10,000+",
         satisfaction: "99.5%",
@@ -123,7 +123,7 @@ const Services = () => {
         "Crane assistance",
         "Full insurance cover",
       ],
-      image: heavyload,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg",
       stats: {
         deliveries: "5,000+",
         satisfaction: "100%",
@@ -146,7 +146,7 @@ const Services = () => {
         "Real-time monitoring",
         "Full documentation",
       ],
-      image: standtruck2,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/standtruck2.jpg",
       stats: {
         deliveries: "8,000+",
         satisfaction: "99.8%",
@@ -169,7 +169,7 @@ const Services = () => {
         "Backup systems",
         "HACCP certified",
       ],
-      image: frontviewtruck,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       stats: {
         deliveries: "15,000+",
         satisfaction: "99.2%",
@@ -192,7 +192,7 @@ const Services = () => {
         "Wharf cartage",
         "Import/Export support",
       ],
-      image: roadTrain,
+      image: "https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png",
       stats: {
         deliveries: "30,000+",
         satisfaction: "97.5%",
@@ -215,7 +215,7 @@ const Services = () => {
         "Last mile delivery",
         "Returns management",
       ],
-      image: warehouseloading,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/warehouse.jpg",
       stats: {
         deliveries: "100,000+",
         satisfaction: "98.5%",
@@ -238,7 +238,7 @@ const Services = () => {
         "Guaranteed delivery",
         "24/7 availability",
       ],
-      image: frontviewtruck,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       stats: {
         deliveries: "20,000+",
         satisfaction: "99.9%",
@@ -261,7 +261,7 @@ const Services = () => {
         "Night moves available",
         "Full project management",
       ],
-      image: heavyload,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       stats: {
         deliveries: "3,000+",
         satisfaction: "100%",
@@ -284,7 +284,7 @@ const Services = () => {
         "Seasonal services",
         "Compliance assured",
       ],
-      image: muncipleConsole,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/muncipalConsole.jpg",
       stats: {
         deliveries: "12,000+",
         satisfaction: "99%",
@@ -307,7 +307,7 @@ const Services = () => {
         "Compliance assured",
         "Confidential handling",
       ],
-      image: government,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/government.jpg",
       stats: {
         deliveries: "8,000+",
         satisfaction: "99.5%",

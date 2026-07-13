@@ -22,14 +22,14 @@ import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 import ScrollReveal from "../components/ui/ScrollReveal";
 
-// Import all fleet images from assets
-import oversize from "../assets/oversize.jpg";
-import standtruck2 from "../assets/standtruck2.jpg";
-import frontviewtruck from "../assets/frontviewtruck.jpg";
-import roadTrain from "../assets/roadTrain.jpg";
-import trucking1 from "../assets/trucking1.jpg";
-import heavyload from "../assets/heavyload.jpg";
-import interstate from "../assets/interstate.png";
+// // Import all fleet images from assets
+// import oversize from "../assets/oversize.jpg";
+// import standtruck2 from "../assets/standtruck2.jpg";
+// import frontviewtruck from "../assets/frontviewtruck.jpg";
+// import roadTrain from "../assets/roadTrain.jpg";
+// import trucking1 from "../assets/trucking1.jpg";
+// import heavyload from "../assets/heavyload.jpg";
+// import interstate from "../assets/interstate.png";
 
 const Fleet = () => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
@@ -53,7 +53,7 @@ const Fleet = () => {
         "Easy Loading",
         "GPS Tracking",
       ],
-      image: trucking1,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg",
       dimensions: { length: "6m", width: "2.4m", height: "2.8m" },
       rating: 4.8,
       // price: "$150/hour",
@@ -81,7 +81,7 @@ const Fleet = () => {
         "GPS Tracking",
         "Air Suspension",
       ],
-      image: standtruck2,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/standtruck2.jpg",
       dimensions: { length: "8m", width: "2.4m", height: "3.2m" },
       rating: 4.9,
       // price: "$200/hour",
@@ -104,7 +104,7 @@ const Fleet = () => {
       available: 25,
       total: 30,
       features: ["Heavy Duty", "Crane Compatible", "Long Range", "Sleeper Cab"],
-      image: oversize,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg",
       dimensions: { length: "12m", width: "2.5m", height: "3.8m" },
       rating: 5.0,
       // price: "$280/hour",
@@ -132,7 +132,7 @@ const Fleet = () => {
         "Sleeper Cab",
         "Advanced Safety",
       ],
-      image: interstate,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/interstate.png",
       dimensions: { length: "19m", width: "2.5m", height: "4.2m" },
       rating: 4.9,
       // price: "$350/hour",
@@ -160,7 +160,7 @@ const Fleet = () => {
         "Advanced Safety",
         "Double Trailer",
       ],
-      image: frontviewtruck,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       dimensions: { length: "26m", width: "2.5m", height: "4.3m" },
       rating: 4.8,
       // price: "$450/hour",
@@ -188,7 +188,7 @@ const Fleet = () => {
         "Mining Spec",
         "Multiple Trailers",
       ],
-      image: roadTrain,
+      image: "https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png",
       dimensions: { length: "53m", width: "2.5m", height: "4.5m" },
       rating: 5.0,
       //  price: "$650/hour",
@@ -211,7 +211,7 @@ const Fleet = () => {
       available: 18,
       total: 22,
       features: ["Open Deck", "Side Loading", "Versatile", "Crane Compatible"],
-      image: heavyload,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       dimensions: { length: "13m", width: "2.5m", height: "1.5m" },
       rating: 4.7,
       //  price: "$300/hour",
@@ -239,7 +239,7 @@ const Fleet = () => {
         "Real-time Monitoring",
         "Multi-zone",
       ],
-      image: frontviewtruck,
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       dimensions: { length: "14m", width: "2.5m", height: "4m" },
       rating: 4.9,
       //  price: "$400/hour",

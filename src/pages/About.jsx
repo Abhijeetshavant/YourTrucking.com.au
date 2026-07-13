@@ -18,11 +18,11 @@ import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 import AnimatedCounter from "../components/ui/AnimatedCounter";
 
-// ✅ CORRECT: Import images as variables
-import KanwarSingh from "../assets/KanwarSingh.png";
-import Abhijeet from "../assets/Abhijeet.jpeg";
-// Import a fallback image for other team members
-import trucking1 from "../assets/trucking1.jpg";
+// // ✅ CORRECT: Import images as variables
+// import KanwarSingh from "../assets/KanwarSingh.png";
+// import Abhijeet from "../assets/Abhijeet.jpeg";
+// // Import a fallback image for other team members
+// import trucking1 from "../assets/trucking1.jpg";
 
 const About = () => {
   const containerRef = useRef(null);
@@ -112,27 +112,27 @@ const About = () => {
     {
       name: "Kanwar Singh",
       role: "CEO & Founder",
-      image: KanwarSingh, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/KanwarSingh.jpeg", // ✅ Using imported variable
       bio: "40+ years in logistics",
     },
     {
       name: "Abhijeet",
       role: "Technical Director",
-      image: Abhijeet, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/Abhijeet.jpeg", // ✅ Using imported variable
       bio: "Full stack web developer",
     },
-    {
-      name: "Michael Torres",
-      role: "CTO",
-      image: trucking1, // ✅ Using fallback image
-      bio: "Silicon Valley veteran",
-    },
-    {
-      name: "Emma Williams",
-      role: "CFO",
-      image: trucking1, // ✅ Using fallback image
-      bio: "Ex-PwC partner",
-    },
+    // {
+    //   name: "Michael Torres",
+    //   role: "CTO",
+    //   image: trucking1, // ✅ Using fallback image
+    //   bio: "Silicon Valley veteran",
+    // },
+    // {
+    //   name: "Emma Williams",
+    //   role: "CFO",
+    //   image: trucking1, // ✅ Using fallback image
+    //   bio: "Ex-PwC partner",
+    // },
   ];
 
   return (

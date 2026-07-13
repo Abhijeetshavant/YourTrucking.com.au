@@ -16,7 +16,7 @@ import MagneticButton from "../ui/MagneticButton";
 import AnimatedCounter from "../ui/AnimatedCounter";
 
 // Import local video
-import heroVideo from "../../assets/herovideo.mp4";
+// import heroVideo from "../../assets/herovideo.mp4";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -110,7 +110,10 @@ const Hero = () => {
             onEnded={handleVideoEnded}
           >
             {/* Local video file from assets */}
-            <source src={heroVideo} type="video/mp4" />
+            <source
+              src={"https://ik.imagekit.io/ewj4kpfrr/assets/herovideo.mp4"}
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
         )}

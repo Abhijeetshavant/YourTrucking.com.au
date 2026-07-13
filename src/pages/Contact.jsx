@@ -89,7 +89,7 @@ const Contact = () => {
     {
       city: "Melbourne (Head Office)",
       address: "Suite 15, 456 Collins Street, Melbourne VIC 3000",
-      phone: "+61 9644000090",
+      phone: "+61 0416879499",
       email: "info@yourstrucking.com.au",
       hours: "24/7",
     },
@@ -164,7 +164,7 @@ const Contact = () => {
                         Failed to send
                       </p>
                       <p className="text-red-400/70 text-xs mt-1">
-                        Please try again or call us at +61 9644000090
+                        Please try again or call us at +61 0416879499
                       </p>
                     </div>
                   </motion.div>
@@ -328,7 +328,7 @@ const Contact = () => {
                         24/7 Support Line
                       </p>
                       <p className="font-bold group-hover:text-accent-orange transition-colors">
-                        +61 9644000090
+                        +61 0416879499
                       </p>
                     </div>
                   </a>
@@ -383,7 +383,7 @@ const Contact = () => {
                 </p>
                 <a href="tel:+619644000090">
                   <MagneticButton variant="primary" size="md" icon={Phone}>
-                    +61 9644000090
+                    +61 0416879499
                   </MagneticButton>
                 </a>
               </GlassCard>

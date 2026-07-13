@@ -14,12 +14,6 @@ import {
 import GlassCard from "../ui/GlassCard";
 import MagneticButton from "../ui/MagneticButton";
 
-// ✅ CORRECT: Import images as variables
-import oversize from "../../assets/oversize.jpg";
-import standtruck2 from "../../assets/standtruck2.jpg";
-import frontviewtruck from "../../assets/frontviewtruck.jpg";
-import roadTrain from "../../assets/roadTrain.jpg";
-
 const Fleet = () => {
   const containerRef = useRef(null);
   const [selectedTruck, setSelectedTruck] = useState(null);
@@ -40,7 +34,7 @@ const Fleet = () => {
       capacity: "25,000 kg",
       range: "1,200 km",
       features: ["GPS Tracking", "Climate Control", "Hydraulic Lift"],
-      image: oversize, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg", // ✅ Using imported variable
       available: true,
       rating: 4.9,
       specs: {
@@ -57,7 +51,7 @@ const Fleet = () => {
       capacity: "34,000 kg",
       range: "2,500 km",
       features: ["Aerodynamic Design", "Fuel Efficient", "Advanced Safety"],
-      image: standtruck2, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/standtruck2.jpg", // ✅ Using imported variable
       available: true,
       rating: 5.0,
       specs: {
@@ -74,7 +68,7 @@ const Fleet = () => {
       capacity: "46,000 kg",
       range: "2,000 km",
       features: ["Dual Trailer", "Heavy Duty", "Long Distance"],
-      image: frontviewtruck, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg", // ✅ Using imported variable
       available: false,
       rating: 4.8,
       specs: {
@@ -91,7 +85,7 @@ const Fleet = () => {
       capacity: "85,000 kg",
       range: "3,500 km",
       features: ["4 Trailers", "Mining Spec", "Remote Area"],
-      image: roadTrain, // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png", // ✅ Using imported variable
       available: false,
       rating: 5.0,
       specs: {
