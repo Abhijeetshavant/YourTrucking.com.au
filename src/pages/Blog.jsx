@@ -11,16 +11,16 @@ import {
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 
-// Import blog images from assets
-import trucking1 from "../assets/trucking1.jpg";
-import interstate from "../assets/interstate.png";
-import frontviewtruck from "../assets/frontviewtruck.jpg";
-import heavyload from "../assets/heavyload.jpg";
-import oversize from "../assets/oversize.jpg";
-import standtruck2 from "../assets/standtruck2.jpg";
-import roadTrain from "../assets/roadTrain.jpg";
-import muncipleConsole from "../assets/muncipalConsole.jpg";
-import government from "../assets/government.jpg";
+// // Import blog images from assets
+// import trucking1 from "../assets/trucking1.jpg";
+// import interstate from "../assets/interstate.png";
+// import frontviewtruck from "../assets/frontviewtruck.jpg";
+// import heavyload from "../assets/heavyload.jpg";
+// import oversize from "../assets/oversize.jpg";
+// import standtruck2 from "../assets/standtruck2.jpg";
+// import roadTrain from "../assets/roadTrain.jpg";
+// import muncipleConsole from "../assets/muncipalConsole.jpg";
+// import government from "../assets/government.jpg";
 
 const Blog = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
