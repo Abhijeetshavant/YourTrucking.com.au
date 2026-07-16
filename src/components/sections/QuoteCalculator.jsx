@@ -38,7 +38,7 @@ const QuoteCalculator = () => {
     specialInstructions: "",
   });
 
-  const whatsappNumber = "919644000090"; // Your WhatsApp number
+  const whatsappNumber = "+61416879499"; // Your WhatsApp number
 
   const getTruckTypeLabel = (type) => {
     const labels = {
@@ -248,7 +248,7 @@ const QuoteCalculator = () => {
                     Failed to send
                   </p>
                   <p className="text-red-400/70 text-xs mt-1">
-                    Please try again or call +61 9644000090
+                    Please try again or call +61 0416879499
                   </p>
                 </div>
               </motion.div>

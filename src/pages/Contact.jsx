@@ -30,7 +30,7 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
-  const whatsappNumber = "919644000090"; // Indian number format (91 + number)
+  const whatsappNumber = "+61416879499"; // Indian number format (91 + number)
   // For Australia: "619644000090"
 
   const handleSubmit = (e) => {
@@ -90,7 +90,7 @@ const Contact = () => {
       city: "Melbourne (Head Office)",
       address: "Suite 15, 456 Collins Street, Melbourne VIC 3000",
       phone: "+61 0416879499",
-      email: "info@yourstrucking.com.au",
+      email: "Khehrakawar44@gmail.com",
       hours: "24/7",
     },
   ];
@@ -317,7 +317,7 @@ const Contact = () => {
                 </h3>
                 <div className="space-y-4">
                   <a
-                    href="tel:+619644000090"
+                    href="tel:+610416879499"
                     className="flex items-center gap-4 group cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center group-hover:bg-accent-orange/20 transition-colors">
@@ -334,7 +334,7 @@ const Contact = () => {
                   </a>
 
                   <a
-                    href="mailto:info@yourstrucking.com.au"
+                    href="Khehrakawar44@gmail.com"
                     className="flex items-center gap-4 group cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center group-hover:bg-accent-blue/20 transition-colors">
@@ -343,7 +343,7 @@ const Contact = () => {
                     <div>
                       <p className="text-sm text-accent-silver/60">Email</p>
                       <p className="font-bold group-hover:text-accent-blue transition-colors">
-                        info@yourstrucking.com.au
+                        Khehrakawar44@gmail.com
                       </p>
                     </div>
                   </a>

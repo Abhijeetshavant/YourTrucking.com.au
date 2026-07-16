@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
             ? "bg-primary/90 backdrop-blur-xl border-b border-white/5 shadow-2xl"
             : "bg-transparent"
@@ -121,7 +121,7 @@ const Navbar = () => {
                 className="flex items-center gap-2 text-sm text-accent-silver/80 hover:text-accent-orange transition-colors"
               >
                 <Phone size={16} />
-                <span>9644000090</span>
+                <span>+61 0416879499</span>
               </a>
 
               <Link to="/booking">

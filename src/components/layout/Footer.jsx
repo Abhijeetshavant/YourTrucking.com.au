@@ -162,18 +162,18 @@ const Footer = () => {
 
             <div className="space-y-3 mb-6">
               <a
-                href="tel:1300878254"
+                href="tel:+61 0416879499"
                 className="flex items-center gap-3 text-sm text-accent-silver/60 hover:text-accent-orange transition-colors"
               >
                 <Phone size={16} className="text-accent-orange" />
-                <span>1300 TRUCKING (1300 878 254)</span>
+                <span>(+61 0416879499)</span>
               </a>
               <a
                 href="mailto:info@yourstrucking.com.au"
                 className="flex items-center gap-3 text-sm text-accent-silver/60 hover:text-accent-orange transition-colors"
               >
                 <Mail size={16} className="text-accent-orange" />
-                <span>info@yourstrucking.com.au</span>
+                <span>Khehrakawar44@gmail.com</span>
               </a>
               <div className="flex items-center gap-3 text-sm text-accent-silver/60">
                 <MapPin size={16} className="text-accent-orange" />

@@ -31,7 +31,7 @@ const MobileMenu = ({ isOpen, onClose, navItems }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-40 lg:hidden"
+      className="fixed inset-0 z-50 lg:hidden"
       initial="closed"
       animate="open"
       exit="closed"

@@ -41,7 +41,7 @@ const Booking = () => {
   });
 
   const totalSteps = 4;
-  const whatsappNumber = "919644000090"; // Indian format: 91 + number
+  const whatsappNumber = "+61416879499"; // Indian format: 91 + number
 
   const nextStep = () => setStep(Math.min(step + 1, totalSteps));
   const prevStep = () => setStep(Math.max(step - 1, 1));

@@ -115,24 +115,6 @@ const About = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/KanwarSingh.jpeg", // ✅ Using imported variable
       bio: "40+ years in logistics",
     },
-    {
-      name: "Abhijeet",
-      role: "Technical Director",
-      image: "https://ik.imagekit.io/ewj4kpfrr/assets/Abhijeet.jpeg", // ✅ Using imported variable
-      bio: "Full stack web developer",
-    },
-    // {
-    //   name: "Michael Torres",
-    //   role: "CTO",
-    //   image: trucking1, // ✅ Using fallback image
-    //   bio: "Silicon Valley veteran",
-    // },
-    // {
-    //   name: "Emma Williams",
-    //   role: "CFO",
-    //   image: trucking1, // ✅ Using fallback image
-    //   bio: "Ex-PwC partner",
-    // },
   ];
 
   return (
@@ -141,7 +123,7 @@ const About = () => {
       <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={trucking1} // ✅ Use imported image for hero
+            src={"https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg"} // ✅ Use imported image for hero
             alt="Yours Trucking History"
             className="w-full h-full object-cover"
             onError={(e) => {

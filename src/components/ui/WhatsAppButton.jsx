@@ -21,8 +21,7 @@ const WhatsAppButton = () => {
   const [name, setName] = useState("");
   const [step, setStep] = useState(1);
 
-  // CHANGE THIS TO YOUR ACTUAL WHATSAPP NUMBER
-  const phoneNumber = "9644000090";
+  const phoneNumber = "+61416879499";
   const companyName = "Yours Trucking Australia";
 
   const handleQuickMessage = (text) => {
@@ -51,149 +50,171 @@ const WhatsAppButton = () => {
   };
 
   return (
-    <div className="fixed bottom-24 right-6 z-40">
-      {/* Chat Box */}
+    <>
+      {/* Chat Box - Separate from button for better mobile handling */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="absolute bottom-16 right-0 w-80 bg-[#0A0E17] border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
-          >
-            {/* Header */}
-            <div className="bg-[#25D366] p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <WhatsAppIcon size={28} className="text-white" />
-                <div>
-                  <h3 className="text-white font-bold text-sm">
-                    {companyName}
-                  </h3>
-                  <p className="text-white/80 text-xs">
-                    Typically replies within 5 minutes
-                  </p>
+          <>
+            {/* Backdrop for mobile */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              onClick={() => {
+                setIsOpen(false);
+                setStep(1);
+              }}
+            />
+
+            {/* Chat Window */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="fixed z-50 bg-[#0A0E17] border border-white/10 shadow-2xl overflow-hidden
+                         bottom-24 right-3 left-3 sm:left-auto sm:right-5 sm:w-80
+                         rounded-2xl max-h-[70vh]"
+            >
+              {/* Header */}
+              <div className="bg-[#25D366] p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <WhatsAppIcon size={28} className="text-white" />
+                  <div>
+                    <h3 className="text-white font-bold text-sm">
+                      {companyName}
+                    </h3>
+                    <p className="text-white/80 text-xs">
+                      Typically replies within 5 minutes
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  setStep(1);
-                }}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
-            {/* Chat Body */}
-            <div className="p-4 max-h-80 overflow-y-auto">
-              <div className="flex gap-2 mb-4">
-                <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
-                  <WhatsAppIcon size={16} className="text-white" />
-                </div>
-                <div className="bg-white/5 rounded-2xl rounded-tl-none px-4 py-3">
-                  <p className="text-sm text-white">
-                    👋 Hi! Welcome to {companyName}. How can we help you today?
-                  </p>
-                </div>
-              </div>
-
-              {/* Quick Actions */}
-              <div className="space-y-2 mb-4">
-                {[
-                  {
-                    emoji: "🚛",
-                    text: "Book a Truck Now",
-                    message:
-                      "Hi! I want to book a truck for freight transport.",
-                  },
-                  {
-                    emoji: "💰",
-                    text: "Get Instant Quote",
-                    message: "Hi! I need a quote for freight transport.",
-                  },
-                  {
-                    emoji: "📍",
-                    text: "Track My Shipment",
-                    message: "Hi! I want to track my shipment.",
-                  },
-                  {
-                    emoji: "💬",
-                    text: "Talk to Support",
-                    message: "Hi! I need customer support assistance.",
-                  },
-                ].map((action, index) => (
-                  <motion.button
-                    key={index}
-                    onClick={() => handleQuickMessage(action.message)}
-                    className="w-full text-left px-4 py-3 rounded-xl border border-white/10 hover:border-[#25D366]/50 hover:bg-[#25D366]/5 transition-all text-sm text-white flex items-center gap-3"
-                    whileHover={{ x: 5 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span className="text-lg">{action.emoji}</span>
-                    <span>{action.text}</span>
-                  </motion.button>
-                ))}
-              </div>
-
-              <button
-                onClick={() => setStep(2)}
-                className="w-full text-center text-accent-blue text-sm hover:underline mb-4"
-              >
-                Or write a custom message →
-              </button>
-
-              {step === 2 && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-3"
+                <button
+                  onClick={() => {
+                    setIsOpen(false);
+                    setStep(1);
+                  }}
+                  className="text-white/80 hover:text-white transition-colors"
                 >
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-[#25D366] focus:outline-none transition-colors text-white"
-                  />
-                  <textarea
-                    placeholder="Your Message..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    rows="3"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-[#25D366] focus:outline-none transition-colors text-white resize-none"
-                  />
-                  <motion.button
-                    onClick={handleSendMessage}
-                    className="w-full bg-[#25D366] text-white py-2.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#20BD5C] transition-colors"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <WhatsAppIcon size={18} />
-                    Send via WhatsApp
-                  </motion.button>
-                </motion.div>
-              )}
-            </div>
+                  <X size={20} />
+                </button>
+              </div>
 
-            <div className="border-t border-white/5 px-4 py-3 flex items-center justify-between">
-              <span className="text-xs text-accent-silver/40">
-                Powered by WhatsApp
-              </span>
-              <span className="text-xs text-[#25D366] flex items-center gap-1">
-                <span className="w-1.5 h-1.5 bg-[#25D366] rounded-full animate-pulse" />
-                Online
-              </span>
-            </div>
-          </motion.div>
+              {/* Chat Body */}
+              <div
+                className="p-4 overflow-y-auto"
+                style={{ maxHeight: "calc(70vh - 180px)" }}
+              >
+                <div className="flex gap-2 mb-4">
+                  <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center flex-shrink-0">
+                    <WhatsAppIcon size={16} className="text-white" />
+                  </div>
+                  <div className="bg-white/5 rounded-2xl rounded-tl-none px-4 py-3">
+                    <p className="text-sm text-white">
+                      👋 Hi! Welcome to {companyName}. How can we help you
+                      today?
+                    </p>
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="space-y-2 mb-4">
+                  {[
+                    {
+                      emoji: "🚛",
+                      text: "Book a Truck Now",
+                      message:
+                        "Hi! I want to book a truck for freight transport.",
+                    },
+                    {
+                      emoji: "💰",
+                      text: "Get Instant Quote",
+                      message: "Hi! I need a quote for freight transport.",
+                    },
+                    {
+                      emoji: "📍",
+                      text: "Track My Shipment",
+                      message: "Hi! I want to track my shipment.",
+                    },
+                    {
+                      emoji: "💬",
+                      text: "Talk to Support",
+                      message: "Hi! I need customer support assistance.",
+                    },
+                  ].map((action, index) => (
+                    <motion.button
+                      key={index}
+                      onClick={() => handleQuickMessage(action.message)}
+                      className="w-full text-left px-4 py-3 rounded-xl border border-white/10 hover:border-[#25D366]/50 hover:bg-[#25D366]/5 transition-all text-sm text-white flex items-center gap-3"
+                      whileHover={{ x: 5 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span className="text-lg">{action.emoji}</span>
+                      <span>{action.text}</span>
+                    </motion.button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setStep(2)}
+                  className="w-full text-center text-accent-blue text-sm hover:underline mb-4"
+                >
+                  Or write a custom message →
+                </button>
+
+                {step === 2 && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    className="space-y-3"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-[#25D366] focus:outline-none transition-colors text-white"
+                    />
+                    <textarea
+                      placeholder="Your Message..."
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      rows="3"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-[#25D366] focus:outline-none transition-colors text-white resize-none"
+                    />
+                    <motion.button
+                      onClick={handleSendMessage}
+                      className="w-full bg-[#25D366] text-white py-2.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-[#20BD5C] transition-colors"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <WhatsAppIcon size={18} />
+                      Send via WhatsApp
+                    </motion.button>
+                  </motion.div>
+                )}
+              </div>
+
+              <div className="border-t border-white/5 px-4 py-3 flex items-center justify-between">
+                <span className="text-xs text-accent-silver/40">
+                  Powered by WhatsApp
+                </span>
+                <span className="text-xs text-[#25D366] flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 bg-[#25D366] rounded-full animate-pulse" />
+                  Online
+                </span>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
-      {/* WhatsApp Button */}
+      {/* WhatsApp Button - Fixed position */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative bg-[#25D366] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-[#20BD5C] transition-colors group"
+        className="fixed z-40 bg-[#25D366] text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-[#20BD5C] transition-colors group
+                   bottom-36 sm:bottom-24 right-4 sm:right-6"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         animate={{
@@ -209,8 +230,8 @@ const WhatsAppButton = () => {
       >
         <WhatsAppIcon size={28} className="text-white" />
 
-        {/* Tooltip */}
-        <span className="absolute right-full mr-3 bg-white text-gray-900 text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+        {/* Tooltip - Hidden on mobile */}
+        <span className="absolute right-full mr-3 bg-white text-gray-900 text-xs px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none hidden sm:block">
           Chat on WhatsApp
         </span>
 
@@ -219,7 +240,7 @@ const WhatsAppButton = () => {
           1
         </span>
       </motion.button>
-    </div>
+    </>
   );
 };
 

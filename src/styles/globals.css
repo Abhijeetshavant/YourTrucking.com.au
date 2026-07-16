@@ -70,3 +70,67 @@
     box-shadow: 0 0 30px rgba(0, 194, 255, 0.2);
   }
 }
+
+/* ========== MOBILE FIXES ========== */
+@layer utilities {
+  /* Prevent content overflow on mobile */
+  .overflow-guard {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+}
+
+/* Fix floating buttons on mobile */
+@media (max-width: 768px) {
+  /* WhatsApp & AI buttons - keep inside viewport */
+  .fixed.bottom-6,
+  .fixed.bottom-24 {
+    right: 16px !important;
+    left: auto !important;
+    bottom: 80px !important; /* Above mobile nav if any */
+  }
+
+  /* Adjust chat windows on mobile */
+  .fixed .absolute.bottom-16,
+  .fixed .absolute.bottom-20 {
+    right: 0 !important;
+    left: auto !important;
+    width: calc(100vw - 32px) !important;
+    max-width: 360px !important;
+  }
+
+  /* Navbar mobile fixes */
+  nav.fixed {
+    z-index: 40 !important;
+  }
+
+  /* Floating buttons z-index */
+  .floating-actions,
+  [class*="fixed bottom"][class*="z-40"],
+  [class*="fixed bottom"][class*="z-50"] {
+    z-index: 30 !important;
+  }
+
+  /* Chat windows z-index */
+  .chat-window,
+  [class*="absolute bottom"][class*="z-40"] {
+    z-index: 35 !important;
+  }
+}
+
+/* Ensure buttons don't overlap mobile navigation */
+@media (max-width: 640px) {
+  .floating-btn-bottom {
+    bottom: 90px !important;
+    right: 16px !important;
+  }
+
+  /* Adjust spacing between WhatsApp and AI buttons */
+  .whatsapp-btn-mobile {
+    bottom: 160px !important;
+  }
+  
+  .ai-chat-btn-mobile {
+    bottom: 90px !important;
+  }
+}
