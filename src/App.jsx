@@ -67,8 +67,12 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-primary text-white relative">
-      <CursorFollower />
+    <div className="min-h-screen bg-primary text-white relative overflow-x-hidden">
+      {/* Hide custom cursor on mobile */}
+      <div className="hidden md:block">
+        <CursorFollower />
+      </div>
+
       <ScrollToTop />
 
       {/* Skip to main content for accessibility */}
@@ -81,7 +85,7 @@ function AppContent() {
 
       <Navbar />
 
-      <main id="main-content">
+      <main id="main-content" className="overflow-x-hidden">
         <Suspense fallback={<PageLoader />}>
           <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
@@ -204,7 +208,7 @@ function AppContent() {
 
       <Footer />
 
-      {/* Floating WhatsApp & AI Chatbot */}
+      {/* Floating WhatsApp & AI Chatbot - Now inside the main container */}
       <FloatingActions />
     </div>
   );
