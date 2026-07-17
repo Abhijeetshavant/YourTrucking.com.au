@@ -1,59 +1,52 @@
 import { motion } from "framer-motion";
-import {
-  Building2,
-  Package,
-  ShoppingCart,
-  Store,
-  Landmark,
-  Factory,
-} from "lucide-react";
+import { Factory, Package, ShoppingCart, Store, Landmark } from "lucide-react";
 
 const Partners = () => {
   const partners = [
     {
       name: "BHP",
       icon: Factory,
-      description: "Mining & Resources",
       color: "text-blue-400",
     },
     {
       name: "ABBE Corrugated",
       icon: Package,
-      description: "Manufacturing",
       color: "text-orange-400",
     },
     {
       name: "Amazon",
       icon: ShoppingCart,
-      description: "E-Commerce",
       color: "text-yellow-400",
     },
     {
       name: "Woolworths",
       icon: Store,
-      description: "Retail",
       color: "text-green-400",
     },
     {
       name: "Coles",
       icon: Store,
-      description: "Retail",
       color: "text-red-400",
     },
     {
       name: "Government",
       icon: Landmark,
-      description: "Public Sector",
       color: "text-purple-400",
     },
   ];
 
   return (
-    <section className="py-16 border-t border-b border-white/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+    <section
+      className="py-12 md:py-16 border-t border-b border-white/5"
+      style={{ overflow: "hidden", maxWidth: "100vw" }}
+    >
+      <div
+        className="max-w-7xl mx-auto px-4 lg:px-8"
+        style={{ maxWidth: "100%" }}
+      >
         {/* Section Title */}
         <motion.p
-          className="text-center text-accent-silver/40 text-xs sm:text-sm mb-8 md:mb-10 tracking-widest uppercase px-2"
+          className="text-center text-accent-silver/40 text-xs md:text-sm mb-8 tracking-widest uppercase"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -61,35 +54,72 @@ const Partners = () => {
           Trusted by Australia's Leading Organizations
         </motion.p>
 
-        {/* Partners Grid - Fixed mobile layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 max-w-full">
+        {/* Partners Grid - Simple flex wrap for mobile */}
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: "12px",
+            maxWidth: "100%",
+          }}
+        >
           {partners.map((partner, index) => (
             <motion.div
               key={index}
-              className="group cursor-default w-full"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ delay: index * 0.1, duration: 0.4 }}
+              style={{
+                flex: "0 1 auto",
+                minWidth: "140px",
+                maxWidth: "160px",
+              }}
+              className="sm:min-w-[150px] sm:max-w-[180px] md:min-w-[160px] md:max-w-[200px]"
             >
-              <div className="glass glass-hover p-4 sm:p-5 md:p-6 rounded-2xl text-center h-full flex flex-col items-center justify-center gap-2 sm:gap-3 transition-all duration-300 group-hover:border-accent-orange/30 group-hover:-translate-y-1">
-                {/* Icon */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                  <partner.icon
-                    className={`${partner.color} transition-colors`}
-                    size={22}
-                  />
+              <div
+                className="text-center transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  background: "rgba(255, 255, 255, 0.03)",
+                  backdropFilter: "blur(10px)",
+                  WebkitBackdropFilter: "blur(10px)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  borderRadius: "16px",
+                  padding: "20px 16px",
+                  height: "100%",
+                }}
+              >
+                {/* Icon Circle */}
+                <div
+                  style={{
+                    width: "44px",
+                    height: "44px",
+                    borderRadius: "12px",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "0 auto 12px",
+                  }}
+                >
+                  <partner.icon className={partner.color} size={22} />
                 </div>
 
                 {/* Company Name */}
-                <h3 className="font-heading text-xs sm:text-sm md:text-base lg:text-lg font-bold text-white group-hover:gradient-text transition-all line-clamp-1">
+                <h3
+                  style={{
+                    fontFamily: "'Space Grotesk', sans-serif",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    color: "#fff",
+                    marginBottom: "0",
+                    lineHeight: 1.3,
+                    wordBreak: "break-word",
+                  }}
+                >
                   {partner.name}
                 </h3>
-
-                {/* Industry */}
-                <p className="text-[10px] sm:text-xs text-accent-silver/40 group-hover:text-accent-silver/60 transition-colors line-clamp-1">
-                  {partner.description}
-                </p>
               </div>
             </motion.div>
           ))}
@@ -97,7 +127,7 @@ const Partners = () => {
 
         {/* Bottom Text */}
         <motion.p
-          className="text-center text-accent-silver/30 text-[10px] sm:text-xs mt-6 md:mt-8 px-2"
+          className="text-center text-accent-silver/30 text-xs mt-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
