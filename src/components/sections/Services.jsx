@@ -12,14 +12,6 @@ import {
 import GlassCard from "../ui/GlassCard";
 import ScrollReveal from "../ui/ScrollReveal";
 
-// // Import all service background images
-// import trucking1 from "../../assets/trucking1.jpg";
-// import interstate from "../../assets/interstate.png";
-// import frontviewtruck from "../../assets/frontviewtruck.jpg";
-// import heavyload from "../../assets/heavyload.jpg";
-// import muncipleConsole from "../../assets/muncipalConsole.jpg";
-// import government from "../../assets/government.jpg";
-
 const Services = () => {
   const services = [
     {
@@ -27,7 +19,7 @@ const Services = () => {
       title: "Local Transport",
       description:
         "Fast and reliable same-day delivery across metropolitan and regional areas. Our local fleet ensures your goods arrive on time, every time.",
-      link: "/services",
+      link: "/services#local-transport",
       color: "text-accent-orange",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg",
       badge: "Same Day",
@@ -37,7 +29,7 @@ const Services = () => {
       title: "Interstate Freight",
       description:
         "Seamless interstate transport connecting all major Australian cities. Daily departures with real-time GPS tracking for complete peace of mind.",
-      link: "/services",
+      link: "/services#interstate-freight",
       color: "text-accent-blue",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/interstate.png",
       badge: "Nationwide",
@@ -47,7 +39,7 @@ const Services = () => {
       title: "Express Delivery",
       description:
         "Time-critical deliveries with guaranteed timeframes. Priority handling and direct routes for your most urgent shipments across Australia.",
-      link: "/services",
+      link: "/services#express-delivery",
       color: "text-yellow-400",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       badge: "Priority",
@@ -57,7 +49,7 @@ const Services = () => {
       title: "Oversized Cargo",
       description:
         "Specialized heavy haulage for oversized machinery, equipment, and abnormal loads. Expert route planning and permit management included.",
-      link: "/services",
+      link: "/services#oversized-cargo",
       color: "text-purple-400",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       badge: "Heavy Duty",
@@ -67,7 +59,7 @@ const Services = () => {
       title: "Local Council",
       description:
         "Dedicated municipal and local government logistics services. Waste management, road maintenance, and community infrastructure transport solutions.",
-      link: "/services",
+      link: "/services#local-council",
       color: "text-green-400",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/muncipalConsole.jpg",
       badge: "Government",
@@ -77,7 +69,7 @@ const Services = () => {
       title: "Government Contract",
       description:
         "Secure and compliant transport solutions for federal and state government departments. Defence, healthcare, and critical infrastructure logistics.",
-      link: "/services",
+      link: "/services#government-contract",
       color: "text-cyan-400",
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/government.jpg",
       badge: "Secure",

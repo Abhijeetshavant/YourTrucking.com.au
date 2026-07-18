@@ -25,19 +25,6 @@ import {
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 
-// // Import all service images from assets
-// import trucking1 from "../assets/trucking1.jpg";
-// import interstate from "../assets/interstate.png";
-// import frontviewtruck from "../assets/frontviewtruck.jpg";
-// import heavyload from "../assets/heavyload.jpg";
-// import muncipleConsole from "../assets/muncipalConsole.jpg";import warehouseloading from "../assets/warehouse.jpg"; // or use any available image
-
-// import government from "../assets/government.jpg";
-// import oversize from "../assets/oversize.jpg";
-// import standtruck2 from "../assets/standtruck2.jpg";
-// import roadTrain from "../assets/roadTrain.jpg";
-// // Add this if you have a warehouse loading image
-
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
   const containerRef = useRef(null);
@@ -308,11 +295,7 @@ const Services = () => {
         "Confidential handling",
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/government.jpg",
-      stats: {
-        deliveries: "8,000+",
-        satisfaction: "99.5%",
-        avgTime: "Custom",
-      },
+      stats: { deliveries: "8,000+", satisfaction: "99.5%", avgTime: "Custom" },
       badge: "Secure",
     },
   ];
@@ -322,8 +305,9 @@ const Services = () => {
       {/* Hero */}
       <section className="relative h-[60vh] overflow-hidden">
         <div className="absolute inset-0">
+          {/* ✅ FIXED: Use direct URL instead of undefined variable */}
           <img
-            src={trucking1}
+            src="https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg"
             alt="Services"
             className="w-full h-full object-cover"
           />

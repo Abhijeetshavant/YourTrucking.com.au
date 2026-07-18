@@ -8,9 +8,7 @@ import {
   Send,
   MessageSquare,
   Building2,
-  Users,
   Shield,
-  ArrowRight,
   CheckCircle,
   XCircle,
 } from "lucide-react";
@@ -28,17 +26,15 @@ const Contact = () => {
     inquiryType: "general",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [submitStatus, setSubmitStatus] = useState(null);
 
-  const whatsappNumber = "+61416879499"; // Indian number format (91 + number)
-  // For Australia: "619644000090"
+  const whatsappNumber = "+61416879499";
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // Build WhatsApp message with all form data
     const whatsappMessage = encodeURIComponent(
       `*📬 New Inquiry - Yours Trucking Australia*\n\n` +
         `*Inquiry Type:* ${formData.inquiryType.toUpperCase()}\n\n` +
@@ -55,17 +51,12 @@ const Contact = () => {
         `🌐 Source: Website Contact Form`,
     );
 
-    // Open WhatsApp with the message
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
     try {
-      // Open WhatsApp in new tab
       window.open(whatsappUrl, "_blank");
-
-      // Show success message
       setSubmitStatus("success");
 
-      // Reset form after 2 seconds
       setTimeout(() => {
         setFormData({
           name: "",
@@ -129,7 +120,6 @@ const Contact = () => {
                   Send Us a Message
                 </h2>
 
-                {/* Success/Error Messages */}
                 {submitStatus === "success" && (
                   <motion.div
                     className="mb-6 p-4 rounded-xl bg-green-400/10 border border-green-400/30 flex items-center gap-3"
@@ -316,8 +306,9 @@ const Contact = () => {
                   Quick Contact
                 </h3>
                 <div className="space-y-4">
+                  {/* ✅ Phone - Correct */}
                   <a
-                    href="tel:+610416879499"
+                    href="tel:+61416879499"
                     className="flex items-center gap-4 group cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl bg-accent-orange/10 flex items-center justify-center group-hover:bg-accent-orange/20 transition-colors">
@@ -333,8 +324,9 @@ const Contact = () => {
                     </div>
                   </a>
 
+                  {/* ✅ Email - FIXED with mailto: */}
                   <a
-                    href="Khehrakawar44@gmail.com"
+                    href="mailto:Khehrakawar44@gmail.com"
                     className="flex items-center gap-4 group cursor-pointer"
                   >
                     <div className="w-12 h-12 rounded-xl bg-accent-blue/10 flex items-center justify-center group-hover:bg-accent-blue/20 transition-colors">
@@ -348,8 +340,9 @@ const Contact = () => {
                     </div>
                   </a>
 
+                  {/* ✅ WhatsApp Chat */}
                   <a
-                    href={`https://wa.me/919644000090`}
+                    href="https://wa.me/61416879499"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-4 group cursor-pointer"
@@ -381,7 +374,7 @@ const Contact = () => {
                   For urgent matters requiring immediate attention, our
                   emergency response team is available 24/7.
                 </p>
-                <a href="tel:+619644000090">
+                <a href="tel:+61416879499">
                   <MagneticButton variant="primary" size="md" icon={Phone}>
                     +61 0416879499
                   </MagneticButton>
@@ -465,6 +458,7 @@ const Contact = () => {
                       <Phone size={16} />
                       {office.phone}
                     </a>
+                    {/* ✅ FIXED: mailto link */}
                     <a
                       href={`mailto:${office.email}`}
                       className="flex items-center gap-2 hover:text-accent-blue transition-colors"
@@ -484,7 +478,7 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section - Using Google Maps Embed */}
+      {/* Map Section */}
       <section className="h-[500px] relative">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3152.0!2d144.9631!3d-37.8136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d2e3b0e0e0e0!2s456%20Collins%20St%2C%20Melbourne%20VIC%203000%2C%20Australia!5e0!3m2!1sen!2sin!4v1700000000000"
@@ -497,7 +491,6 @@ const Contact = () => {
           title="Yours Trucking Australia - Melbourne Office"
           className="absolute inset-0"
         />
-        {/* Map Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
           <div className="absolute bottom-6 left-6 z-10 pointer-events-auto">

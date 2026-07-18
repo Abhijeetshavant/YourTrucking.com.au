@@ -22,15 +22,6 @@ import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
 import ScrollReveal from "../components/ui/ScrollReveal";
 
-// // Import all fleet images from assets
-// import oversize from "../assets/oversize.jpg";
-// import standtruck2 from "../assets/standtruck2.jpg";
-// import frontviewtruck from "../assets/frontviewtruck.jpg";
-// import roadTrain from "../assets/roadTrain.jpg";
-// import trucking1 from "../assets/trucking1.jpg";
-// import heavyload from "../assets/heavyload.jpg";
-// import interstate from "../assets/interstate.png";
-
 const Fleet = () => {
   const [selectedVehicle, setSelectedVehicle] = useState(null);
   const [filterType, setFilterType] = useState("all");
@@ -56,7 +47,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg",
       dimensions: { length: "6m", width: "2.4m", height: "2.8m" },
       rating: 4.8,
-      // price: "$150/hour",
       description:
         "Perfect for urban deliveries and small to medium cargo. Efficient, maneuverable, and reliable.",
       specs: {
@@ -84,7 +74,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/standtruck2.jpg",
       dimensions: { length: "8m", width: "2.4m", height: "3.2m" },
       rating: 4.9,
-      // price: "$200/hour",
       description:
         "Ideal for regional deliveries and medium-sized cargo. Versatile and dependable for various applications.",
       specs: {
@@ -107,7 +96,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg",
       dimensions: { length: "12m", width: "2.5m", height: "3.8m" },
       rating: 5.0,
-      // price: "$280/hour",
       description:
         "Built for heavy loads and demanding conditions. Perfect for construction and industrial applications.",
       specs: {
@@ -135,7 +123,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/interstate.png",
       dimensions: { length: "19m", width: "2.5m", height: "4.2m" },
       rating: 4.9,
-      // price: "$350/hour",
       description:
         "The backbone of interstate freight. Efficient, powerful, and designed for long-haul operations.",
       specs: {
@@ -163,7 +150,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       dimensions: { length: "26m", width: "2.5m", height: "4.3m" },
       rating: 4.8,
-      // price: "$450/hour",
       description:
         "Maximum efficiency for high-volume freight. Two trailers for double the capacity.",
       specs: {
@@ -191,7 +177,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png",
       dimensions: { length: "53m", width: "2.5m", height: "4.5m" },
       rating: 5.0,
-      //  price: "$650/hour",
       description:
         "The ultimate heavy haulage solution. Built for Australia's toughest conditions and longest routes.",
       specs: {
@@ -214,7 +199,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       dimensions: { length: "13m", width: "2.5m", height: "1.5m" },
       rating: 4.7,
-      //  price: "$300/hour",
       description:
         "Versatile open-deck transport for oversized and irregularly shaped cargo.",
       specs: {
@@ -242,7 +226,6 @@ const Fleet = () => {
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       dimensions: { length: "14m", width: "2.5m", height: "4m" },
       rating: 4.9,
-      //  price: "$400/hour",
       description:
         "State-of-the-art refrigerated transport for temperature-sensitive cargo.",
       specs: {
@@ -276,13 +259,10 @@ const Fleet = () => {
       return matchesCategory && matchesSearch;
     })
     .sort((a, b) => {
-      if (sortBy === "capacity") {
+      if (sortBy === "capacity")
         return parseInt(b.capacity) - parseInt(a.capacity);
-      } else if (sortBy === "rating") {
-        return b.rating - a.rating;
-      } else if (sortBy === "availability") {
-        return b.available - a.available;
-      }
+      if (sortBy === "rating") return b.rating - a.rating;
+      if (sortBy === "availability") return b.available - a.available;
       return 0;
     });
 
@@ -292,13 +272,13 @@ const Fleet = () => {
       <section className="relative py-16 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/50 to-primary" />
+          {/* ✅ FIXED: Using direct CDN URL instead of undefined variable */}
           <img
-            src={roadTrain}
+            src="https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png"
             alt="Fleet"
             className="w-full h-full object-cover opacity-30"
           />
         </div>
-
         <div className="max-w-7xl mx-auto px-4 lg:px-8 relative">
           <motion.div
             className="text-center"
@@ -341,7 +321,6 @@ const Fleet = () => {
                 </motion.button>
               ))}
             </div>
-
             <div className="flex gap-3 w-full md:w-auto">
               <div className="relative flex-1 md:w-64">
                 <Search
@@ -395,7 +374,6 @@ const Fleet = () => {
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
-
                       <div className="absolute top-4 left-4">
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1.5 ${
@@ -407,18 +385,11 @@ const Fleet = () => {
                           }`}
                         >
                           <span
-                            className={`w-2 h-2 rounded-full ${
-                              vehicle.available > 10
-                                ? "bg-green-400"
-                                : vehicle.available > 0
-                                  ? "bg-yellow-400"
-                                  : "bg-red-400"
-                            } animate-pulse`}
+                            className={`w-2 h-2 rounded-full ${vehicle.available > 10 ? "bg-green-400" : vehicle.available > 0 ? "bg-yellow-400" : "bg-red-400"} animate-pulse`}
                           />
                           {vehicle.available} Available
                         </span>
                       </div>
-
                       <div className="absolute top-4 right-4">
                         <div className="glass px-3 py-1.5 rounded-full flex items-center gap-1.5">
                           <Star
@@ -434,14 +405,9 @@ const Fleet = () => {
 
                     <div className="space-y-4">
                       <div>
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-heading text-xl font-bold group-hover:text-accent-orange transition-colors">
-                            {vehicle.name}
-                          </h3>
-                          <span className="text-accent-blue text-sm font-medium">
-                            {vehicle.price}
-                          </span>
-                        </div>
+                        <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-accent-orange transition-colors">
+                          {vehicle.name}
+                        </h3>
                         <p className="text-accent-silver/60 text-sm">
                           {vehicle.description}
                         </p>
@@ -603,14 +569,6 @@ const Fleet = () => {
                       </span>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-accent-silver/60 text-sm">
-                      Starting from
-                    </p>
-                    <p className="font-display text-3xl font-bold gradient-text">
-                      {selectedVehicle.price}
-                    </p>
-                  </div>
                 </div>
 
                 <p className="text-accent-silver/80 mb-8 text-lg leading-relaxed">
@@ -638,7 +596,6 @@ const Fleet = () => {
                       )}
                     </div>
                   </div>
-
                   <div>
                     <h3 className="font-heading text-xl font-bold mb-4">
                       Dimensions & Capacity
@@ -713,11 +670,11 @@ const Fleet = () => {
       </AnimatePresence>
 
       {/* Fleet Stats */}
-      <section className="py-16 bg-primary-200/30">
+      {/* <section className="py-16 bg-primary-200/30">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { label: "Total Vehicles", value: "250+", icon: Truck },
+              { label: "Total Vehicles", value: "2500+", icon: Truck },
               { label: "Average Rating", value: "4.9/5", icon: Star },
               { label: "Service Areas", value: "100+ Cities", icon: MapPin },
               { label: "Availability", value: "24/7", icon: Clock },
@@ -746,7 +703,7 @@ const Fleet = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

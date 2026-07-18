@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Truck,
@@ -14,9 +15,6 @@ import {
 } from "lucide-react";
 import MagneticButton from "../ui/MagneticButton";
 import AnimatedCounter from "../ui/AnimatedCounter";
-
-// Import local video
-// import heroVideo from "../../assets/herovideo.mp4";
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -76,7 +74,7 @@ const Hero = () => {
     { Icon: Zap, delay: 6, x: "80%", y: "70%" },
   ];
 
-  // Stats data - "Cities Covered" replaced with "Client Rating"
+  // Stats data
   const stats = [
     { value: 50000, suffix: "+", label: "Loads Delivered", icon: Truck },
     { value: 2500, suffix: "+", label: "Verified Trucks", icon: Shield },
@@ -94,7 +92,6 @@ const Hero = () => {
         className="absolute inset-0 z-0"
         style={{ opacity: videoOpacity, scale: videoScale }}
       >
-        {/* Local Video Player */}
         {!videoError && (
           <video
             ref={videoRef}
@@ -109,7 +106,6 @@ const Hero = () => {
             onError={() => setVideoError(true)}
             onEnded={handleVideoEnded}
           >
-            {/* Local video file from assets */}
             <source
               src={"https://ik.imagekit.io/ewj4kpfrr/assets/herovideo.mp4"}
               type="video/mp4"
@@ -272,28 +268,35 @@ const Hero = () => {
             AI-driven logistics.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* ✅ CTA Buttons - NOW CLICKABLE with Links */}
           <motion.div
             className="flex flex-col sm:flex-row gap-3 md:gap-4 mb-12 md:mb-16 w-full sm:w-auto px-4 sm:px-0"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <MagneticButton
-              variant="primary"
-              size="lg"
-              icon={ArrowRight}
-              className="w-full sm:w-auto justify-center text-sm md:text-base shadow-lg shadow-accent-orange/25"
-            >
-              Orchestrate a Shipment
-            </MagneticButton>
-            <MagneticButton
-              variant="secondary"
-              size="lg"
-              className="w-full sm:w-auto justify-center text-sm md:text-base"
-            >
-              Explore Our Fleet
-            </MagneticButton>
+            {/* ✅ Book a Shipment → Goes to Booking Page */}
+            <Link to="/booking">
+              <MagneticButton
+                variant="primary"
+                size="lg"
+                icon={ArrowRight}
+                className="w-full sm:w-auto justify-center text-sm md:text-base shadow-lg shadow-accent-orange/25"
+              >
+                Orchestrate a Shipment
+              </MagneticButton>
+            </Link>
+
+            {/* ✅ Explore Fleet → Goes to Fleet Page */}
+            <Link to="/fleet">
+              <MagneticButton
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto justify-center text-sm md:text-base"
+              >
+                Explore Our Fleet
+              </MagneticButton>
+            </Link>
           </motion.div>
 
           {/* Stats Grid - 4 Stats with Rating */}
@@ -310,7 +313,6 @@ const Hero = () => {
                 whileHover={{ y: -5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {/* Icon for each stat */}
                 <stat.icon
                   className="text-accent-orange mx-auto mb-1 md:mb-2 opacity-70 group-hover:opacity-100 transition-opacity"
                   size={16}
@@ -324,7 +326,6 @@ const Hero = () => {
                   {stat.label}
                 </p>
 
-                {/* Star rating display for Client Rating */}
                 {stat.label === "Client Rating" && (
                   <div className="flex justify-center gap-0.5 mt-1">
                     {[...Array(5)].map((_, i) => (

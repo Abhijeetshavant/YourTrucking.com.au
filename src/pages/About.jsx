@@ -11,28 +11,20 @@ import {
   ArrowRight,
   CheckCircle,
   Star,
-  Quote,
   TrendingUp,
 } from "lucide-react";
 import GlassCard from "../components/ui/GlassCard";
 import MagneticButton from "../components/ui/MagneticButton";
-import AnimatedCounter from "../components/ui/AnimatedCounter";
-
-// // ✅ CORRECT: Import images as variables
-// import KanwarSingh from "../assets/KanwarSingh.png";
-// import Abhijeet from "../assets/Abhijeet.jpeg";
-// // Import a fallback image for other team members
-// import trucking1 from "../assets/trucking1.jpg";
 
 const About = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end end"],
+    offset: ["start end", "end start"],
   });
 
-  const timelineOpacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
-  const teamScale = useTransform(scrollYProgress, [0.5, 0.7], [0.8, 1]);
+  const timelineOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0.3, 1]);
+  const teamScale = useTransform(scrollYProgress, [0.6, 0.8], [0.8, 1]);
 
   const milestones = [
     {
@@ -107,23 +99,23 @@ const About = () => {
     },
   ];
 
-  // ✅ FIXED: Use imported variables, not strings
+  // ✅ Only ONE person
   const leadership = [
     {
       name: "Kanwar Singh",
       role: "CEO & Founder",
-      image: "https://ik.imagekit.io/ewj4kpfrr/KanwarSingh.jpeg", // ✅ Using imported variable
+      image: "https://ik.imagekit.io/ewj4kpfrr/KanwarSingh.jpeg",
       bio: "40+ years in logistics",
     },
   ];
 
   return (
     <div ref={containerRef} className="bg-primary">
-      {/* Hero Section */}
+      {/* ========== HERO SECTION ========== */}
       <section className="relative h-[70vh] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={"https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg"} // ✅ Use imported image for hero
+            src="https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg"
             alt="Yours Trucking History"
             className="w-full h-full object-cover"
             onError={(e) => {
@@ -157,7 +149,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
+      {/* ========== MISSION & VISION ========== */}
       <section className="py-24 relative">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -216,8 +208,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Company Timeline */}
-      <section className="py-24 relative overflow-hidden">
+      {/* ========== COMPANY TIMELINE - ✅ FIXED: Always visible ========== */}
+      <section className="pt-24 pb-0 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,76,0,0.05),_transparent_70%)]" />
         <div className="max-w-7xl mx-auto px-4 lg:px-8 relative">
           <motion.div
@@ -234,22 +226,24 @@ const About = () => {
             </p>
           </motion.div>
 
+          {/* ✅ FIXED: Timeline always visible with fade effect */}
           <motion.div className="relative" style={{ opacity: timelineOpacity }}>
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-accent-orange via-accent-blue to-accent-orange" />
-            <div className="space-y-16">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-accent-orange via-accent-blue to-accent-orange hidden md:block" />
+            <div className="space-y-8 md:space-y-16 pb-0">
               {milestones.map((milestone, index) => (
                 <motion.div
                   key={milestone.year}
-                  className={`flex items-center ${index % 2 === 0 ? "flex-row" : "flex-row-reverse"}`}
+                  className={`flex flex-col md:flex-row items-center ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                 >
+                  {/* Mobile: Full width, Desktop: Half width */}
                   <div
-                    className={`flex-1 ${index % 2 === 0 ? "text-right pr-12" : "text-left pl-12"}`}
+                    className={`w-full md:flex-1 ${index % 2 === 0 ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}
                   >
-                    <GlassCard className="inline-block">
+                    <GlassCard className="inline-block w-full md:w-auto">
                       <span className="text-accent-orange font-display text-3xl font-bold">
                         {milestone.year}
                       </span>
@@ -261,10 +255,13 @@ const About = () => {
                       </p>
                     </GlassCard>
                   </div>
-                  <div className="relative flex-shrink-0">
+
+                  {/* Timeline dot - Hidden on mobile */}
+                  <div className="relative flex-shrink-0 hidden md:block">
                     <div className="w-4 h-4 bg-accent-orange rounded-full glow-orange" />
                   </div>
-                  <div className="flex-1" />
+
+                  <div className="flex-1 hidden md:block" />
                 </motion.div>
               ))}
             </div>
@@ -272,11 +269,14 @@ const About = () => {
         </div>
       </section>
 
-      {/* Core Values */}
-      <section className="py-24 bg-primary-200/30">
+      {/* ========== CORE VALUES ========== */}
+      <section
+        className="pt-0 pb-24 bg-primary-200/30"
+        style={{ marginTop: "-1px" }}
+      >
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-16 pt-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -310,7 +310,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Leadership Team */}
+      {/* ========== LEADERSHIP TEAM - ✅ Only 1 Person ========== */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -322,51 +322,56 @@ const About = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {leadership.map((leader, index) => (
-              <motion.div
-                key={leader.name}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-              >
-                <GlassCard className="text-center group">
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-accent-orange/30">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      onError={(e) => {
-                        // Fallback: Show initials if image fails
-                        e.target.style.display = "none";
-                        e.target.parentElement.style.background =
-                          "linear-gradient(135deg, #FF4C00, #FF8C00)";
-                        e.target.parentElement.style.display = "flex";
-                        e.target.parentElement.style.alignItems = "center";
-                        e.target.parentElement.style.justifyContent = "center";
-                        e.target.parentElement.innerHTML = `<span style="color:white;font-size:2rem;font-weight:bold">${leader.name
-                          .split(" ")
-                          .map((n) => n[0])
-                          .join("")}</span>`;
-                      }}
-                    />
-                  </div>
-                  <h3 className="font-heading text-xl font-bold">
-                    {leader.name}
-                  </h3>
-                  <p className="text-accent-orange text-sm mb-2">
-                    {leader.role}
-                  </p>
-                  <p className="text-accent-silver/60 text-sm">{leader.bio}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
+          {/* ✅ Centered single card */}
+          <div className="flex justify-center">
+            <div className="w-full max-w-sm">
+              {leadership.map((leader, index) => (
+                <motion.div
+                  key={leader.name}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                >
+                  <GlassCard className="text-center group">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-accent-orange/30">
+                      <img
+                        src={leader.image}
+                        alt={leader.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        onError={(e) => {
+                          e.target.style.display = "none";
+                          e.target.parentElement.style.background =
+                            "linear-gradient(135deg, #FF4C00, #FF8C00)";
+                          e.target.parentElement.style.display = "flex";
+                          e.target.parentElement.style.alignItems = "center";
+                          e.target.parentElement.style.justifyContent =
+                            "center";
+                          e.target.parentElement.innerHTML = `<span style="color:white;font-size:2rem;font-weight:bold">${leader.name
+                            .split(" ")
+                            .map((n) => n[0])
+                            .join("")}</span>`;
+                        }}
+                      />
+                    </div>
+                    <h3 className="font-heading text-xl font-bold">
+                      {leader.name}
+                    </h3>
+                    <p className="text-accent-orange text-sm mb-2">
+                      {leader.role}
+                    </p>
+                    <p className="text-accent-silver/60 text-sm">
+                      {leader.bio}
+                    </p>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Certifications & Compliance */}
+      {/* ========== CERTIFICATIONS & COMPLIANCE ========== */}
       <section className="py-24 bg-primary-200/30">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <motion.div
@@ -425,7 +430,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ========== CTA SECTION ========== */}
       <section className="py-24 relative">
         <div className="max-w-4xl mx-auto text-center px-4">
           <motion.div

@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+
+Sitemap: https://yourstrucking.com.au/sitemap.xml
+
+Crawl-delay: 10

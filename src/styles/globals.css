@@ -71,26 +71,91 @@
   }
 }
 
-/* ========== MOBILE FIXES ========== */
-@layer utilities {
-  /* Prevent content overflow on mobile */
-  .overflow-guard {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-}
-
-/* Fix floating buttons on mobile */
+/* ========== MOBILE BRIGHTNESS & VISIBILITY FIXES ========== */
 @media (max-width: 768px) {
-  /* WhatsApp & AI buttons - keep inside viewport */
+  /* ✅ Brighter background on mobile */
+  body {
+    background-color: #111620 !important; /* Slightly lighter than #0A0E17 */
+  }
+
+  /* ✅ Brighter text colors */
+  .text-accent-silver\/60,
+  .text-accent-silver\/40,
+  .text-accent-silver\/30 {
+    color: rgba(255, 255, 255, 0.7) !important; /* Was 0.4-0.6, now 0.7 */
+  }
+
+  .text-accent-silver\/80 {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  /* ✅ Brighter paragraph text */
+  p {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  /* ✅ Brighter headings */
+  h1, h2, h3, h4, h5, h6 {
+    color: #ffffff !important;
+  }
+
+  /* ✅ Brighter gradient text */
+  .gradient-text {
+    background: linear-gradient(to right, #ffffff, #e0e0e0, #ffffff) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  /* ✅ Brighter glass cards */
+  .glass {
+    background: rgba(255, 255, 255, 0.08) !important; /* Was 0.05 */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important; /* Was 0.1 */
+  }
+
+  /* ✅ More visible section backgrounds */
+  .bg-primary-200\/30 {
+    background-color: rgba(17, 22, 32, 0.6) !important; /* Lighter overlay */
+  }
+
+  /* ✅ Brighter stats and labels */
+  .text-accent-silver {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  /* ✅ Better input contrast */
+  input, textarea, select {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+  }
+
+  input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5) !important;
+  }
+
+  /* ✅ Brighter button text */
+  .glass-hover {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  /* ✅ Better icon visibility */
+  .text-accent-orange {
+    color: #FF6B33 !important; /* Brighter orange */
+  }
+
+  .text-accent-blue {
+    color: #33D4FF !important; /* Brighter blue */
+  }
+
+  /* ✅ Floating buttons visibility */
   .fixed.bottom-6,
   .fixed.bottom-24 {
     right: 16px !important;
     left: auto !important;
-    bottom: 80px !important; /* Above mobile nav if any */
+    bottom: 80px !important;
   }
 
-  /* Adjust chat windows on mobile */
   .fixed .absolute.bottom-16,
   .fixed .absolute.bottom-20 {
     right: 0 !important;
@@ -104,28 +169,24 @@
     z-index: 40 !important;
   }
 
-  /* Floating buttons z-index */
   .floating-actions,
   [class*="fixed bottom"][class*="z-40"],
   [class*="fixed bottom"][class*="z-50"] {
     z-index: 30 !important;
   }
 
-  /* Chat windows z-index */
   .chat-window,
   [class*="absolute bottom"][class*="z-40"] {
     z-index: 35 !important;
   }
 }
 
-/* Ensure buttons don't overlap mobile navigation */
 @media (max-width: 640px) {
   .floating-btn-bottom {
     bottom: 90px !important;
     right: 16px !important;
   }
 
-  /* Adjust spacing between WhatsApp and AI buttons */
   .whatsapp-btn-mobile {
     bottom: 160px !important;
   }
@@ -133,4 +194,38 @@
   .ai-chat-btn-mobile {
     bottom: 90px !important;
   }
+}
+
+/* ========== OVERFLOW & ZOOM PREVENTION ========== */
+@layer utilities {
+  .overflow-guard {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+}
+
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  input, textarea, select, button {
+    font-size: 16px !important;
+  }
+}
+
+body {
+  overscroll-behavior-y: none;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
 }

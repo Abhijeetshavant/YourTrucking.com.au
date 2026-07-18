@@ -94,7 +94,7 @@ const CTASection = () => {
                 size={32}
               />
               <h3 className="font-heading font-bold mb-2">Call Us</h3>
-              <p className="text-accent-silver/60 text-sm">9644000090</p>
+              <p className="text-accent-silver/60 text-sm">+61 0416879499</p>
               <p className="text-accent-silver/40 text-xs mt-1">
                 24/7 Support Available
               </p>
@@ -107,7 +107,7 @@ const CTASection = () => {
               />
               <h3 className="font-heading font-bold mb-2">Email Us</h3>
               <p className="text-accent-silver/60 text-sm">
-                info@yourstrucking.com.au
+                yourstrucking1@gmail.com
               </p>
               <p className="text-accent-silver/40 text-xs mt-1">
                 Response within 1 hour
