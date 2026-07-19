@@ -117,7 +117,7 @@ const Navbar = () => {
               </Link>
 
               <a
-                href="tel:9644000090"
+                href="tel:+61 0416879499"
                 className="flex items-center gap-2 text-sm text-accent-silver/80 hover:text-accent-orange transition-colors"
               >
                 <Phone size={16} />
