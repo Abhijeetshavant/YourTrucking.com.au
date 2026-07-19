@@ -8,6 +8,10 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "@studio-freight/lenis";
 
+// ✅ Vercel Monitoring
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { Analytics } from "@vercel/analytics/react";
+
 // Layout Components
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -208,7 +212,7 @@ function AppContent() {
 
       <Footer />
 
-      {/* Floating WhatsApp & AI Chatbot - Now inside the main container */}
+      {/* Floating WhatsApp & AI Chatbot */}
       <FloatingActions />
     </div>
   );
@@ -286,6 +290,12 @@ function App() {
       <Router>
         <AppContent />
       </Router>
+
+      {/* ✅ Vercel Speed Insights - Tracks Core Web Vitals */}
+      <SpeedInsights />
+
+      {/* ✅ Vercel Analytics - Tracks page views & visitors */}
+      <Analytics />
     </>
   );
 }
