@@ -2,7 +2,9 @@
 <html lang="en-AU">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/truck-icon.svg" />
+    
+    <!-- ❌ REMOVE THIS LINE - It's blocking your logo -->
+    <!-- <link rel="icon" type="image/svg+xml" href="/truck-icon.svg" /> -->
     
     <!-- ✅ Proper viewport - allows user zoom but fits screen -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
@@ -63,9 +65,30 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://ik.imagekit.io" />
     
-    <!-- ========== FAVICON ========== -->
-    <link rel="icon" type="image/png" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
-    <link rel="apple-touch-icon" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <!-- ========== ✅ FAVICON - ALL SIZES FOR ALL BROWSERS ========== -->
+    <!-- Standard Browser Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="shortcut icon" type="image/png" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    
+    <!-- Apple Touch Icons (iOS, Safari) -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    
+    <!-- Microsoft Tiles -->
+    <meta name="msapplication-TileImage" content="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <meta name="msapplication-TileColor" content="#0A0E17" />
+    <meta name="msapplication-square70x70logo" content="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <meta name="msapplication-square150x150logo" content="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
+    <meta name="msapplication-square310x310logo" content="https://ik.imagekit.io/ewj4kpfrr/logo.png" />
     
     <!-- ========== STRUCTURED DATA (SCHEMA.ORG) ========== -->
     <script type="application/ld+json">
@@ -196,7 +219,6 @@
     
     <!-- ✅ Inline CSS - FIXED: Allows vertical scrolling -->
     <style>
-      /* Only block horizontal overflow, allow vertical scroll */
       html {
         overflow-x: hidden;
         overflow-y: auto;
