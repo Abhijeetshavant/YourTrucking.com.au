@@ -28,37 +28,31 @@ const About = () => {
 
   const milestones = [
     {
-      year: "1988",
-      title: "Founded in Kalgoorlie",
+      year: "2022",
+      title: "Founded in Mickleham Melbourne",
       description:
         "Started with one truck and a vision to connect Western Australia.",
     },
     {
-      year: "1995",
+      year: "2223",
       title: "Expanded to Interstate",
       description:
-        "Began operating across state lines with a fleet of 50 trucks.",
+        "Began operating across state lines with a fleet of 5 trucks.",
     },
     {
-      year: "2005",
-      title: "Fleet of 500+",
+      year: "2024",
+      title: "Fleet of 10+",
       description: "Reached major milestone with nationwide coverage.",
     },
     {
-      year: "2015",
+      year: "2025",
       title: "Technology Integration",
       description: "Launched real-time tracking and digital booking platform.",
     },
     {
-      year: "2020",
-      title: "2500+ Vehicles",
+      year: "2026",
+      title: "20+ Vehicles",
       description: "Became Australia's most trusted logistics partner.",
-    },
-    {
-      year: "2024",
-      title: "AI-Powered Logistics",
-      description:
-        "Pioneering autonomous fleet management and predictive analytics.",
     },
   ];
 
@@ -105,7 +99,7 @@ const About = () => {
       name: "Kanwar Singh",
       role: "CEO & Founder",
       image: "https://ik.imagekit.io/ewj4kpfrr/KanwarSingh.jpeg",
-      bio: "40+ years in logistics",
+      bio: "10+ years in logistics",
     },
   ];
 
