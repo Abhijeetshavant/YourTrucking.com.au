@@ -177,7 +177,7 @@ const Footer = () => {
               </a>
               <div className="flex items-center gap-3 text-sm text-accent-silver/60">
                 <MapPin size={16} className="text-accent-orange" />
-                <span>Level 25, 123 George Street, Sydney NSW 2000</span>
+                <span>Micklenham Melbourne Victoria 3064</span>
               </div>
             </div>
 
