@@ -34,15 +34,15 @@ const WhyChooseUs = () => {
       icon: Users,
       title: "Expert Team",
       description:
-        "5,000+ trained professionals with extensive logistics and industry expertise.",
-      stats: "5000+ Team",
+        "20+ trained professionals with extensive logistics and industry expertise.",
+      stats: "50+ Team",
     },
     {
       icon: MapPin,
       title: "Nationwide Coverage",
       description:
-        "Servicing 100+ cities across all Australian states and territories.",
-      stats: "100+ Cities",
+        "Servicing 10+ cities across all Australian states and territories.",
+      stats: "10+ Cities",
     },
     {
       icon: HeadphonesIcon,

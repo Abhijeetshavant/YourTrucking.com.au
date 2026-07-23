@@ -47,7 +47,7 @@ const Services = () => {
         "Competitive local rates",
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/trucking1.jpg",
-      stats: { deliveries: "50,000+", satisfaction: "99%", avgTime: "4 hours" },
+      stats: { deliveries: "500+", satisfaction: "99%", avgTime: "4 hours" },
       badge: "Popular",
     },
     {
@@ -67,7 +67,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/interstate.png",
       stats: {
-        deliveries: "25,000+",
+        deliveries: "250+",
         satisfaction: "98%",
         avgTime: "2-5 days",
       },
@@ -90,7 +90,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/oversize.jpg",
       stats: {
-        deliveries: "10,000+",
+        deliveries: "100+",
         satisfaction: "99.5%",
         avgTime: "Custom",
       },
@@ -113,7 +113,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       stats: {
-        deliveries: "5,000+",
+        deliveries: "5+",
         satisfaction: "100%",
         avgTime: "Project based",
       },
@@ -136,7 +136,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/standtruck2.jpg",
       stats: {
-        deliveries: "8,000+",
+        deliveries: "80+",
         satisfaction: "99.8%",
         avgTime: "Scheduled",
       },
@@ -159,7 +159,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       stats: {
-        deliveries: "15,000+",
+        deliveries: "150+",
         satisfaction: "99.2%",
         avgTime: "2-24 hours",
       },
@@ -182,7 +182,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/RoadTrain.png",
       stats: {
-        deliveries: "30,000+",
+        deliveries: "300+",
         satisfaction: "97.5%",
         avgTime: "Same day",
       },
@@ -205,7 +205,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/warehouse.jpg",
       stats: {
-        deliveries: "100,000+",
+        deliveries: "100+",
         satisfaction: "98.5%",
         avgTime: "24-48 hours",
       },
@@ -228,7 +228,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/frontviewtruck.jpg",
       stats: {
-        deliveries: "20,000+",
+        deliveries: "20+",
         satisfaction: "99.9%",
         avgTime: "2-8 hours",
       },
@@ -251,7 +251,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/heavyload.jpg",
       stats: {
-        deliveries: "3,000+",
+        deliveries: "300+",
         satisfaction: "100%",
         avgTime: "Project based",
       },
@@ -274,7 +274,7 @@ const Services = () => {
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/muncipalConsole.jpg",
       stats: {
-        deliveries: "12,000+",
+        deliveries: "120+",
         satisfaction: "99%",
         avgTime: "Scheduled",
       },
@@ -296,7 +296,7 @@ const Services = () => {
         "Confidential handling",
       ],
       image: "https://ik.imagekit.io/ewj4kpfrr/assets/government.jpg",
-      stats: { deliveries: "8,000+", satisfaction: "99.5%", avgTime: "Custom" },
+      stats: { deliveries: "80+", satisfaction: "99.5%", avgTime: "Custom" },
       badge: "Secure",
     },
   ];

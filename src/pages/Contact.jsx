@@ -79,7 +79,7 @@ const Contact = () => {
   const offices = [
     {
       city: "Melbourne (Head Office)",
-      address: "Suite 15, 456 Collins Street, Melbourne VIC 3000",
+      address: "Mickleham Melbourne Victoria 3064",
       phone: "+61 0416879499",
       email: "Khehrakawar44@gmail.com",
       hours: "24/7",

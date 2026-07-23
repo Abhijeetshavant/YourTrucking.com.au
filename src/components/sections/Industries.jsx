@@ -34,7 +34,7 @@ const Industries = () => {
         "Heavy equipment transport, mine site logistics, and remote area operations with specialized vehicles and trained personnel.",
       fullDescription:
         "Our mining logistics division specializes in transporting heavy machinery, equipment, and materials to some of Australia's most remote mine sites. With mine-spec vehicles, experienced drivers, and 24/7 operations, we ensure your mining operations never stop.",
-      stats: { clients: "200+", deliveries: "15,000+", satisfaction: "99.8%" },
+      stats: { clients: "20+", deliveries: "150+", satisfaction: "99.8%" },
       features: [
         "Mine spec vehicles and equipment",
         "Remote area capability",
@@ -68,7 +68,7 @@ const Industries = () => {
         "Just-in-time delivery of building materials, machinery, and equipment to construction sites across Australia.",
       fullDescription:
         "We provide comprehensive logistics solutions for the construction industry, delivering everything from raw materials to heavy machinery. Our just-in-time delivery ensures your projects stay on schedule and within budget.",
-      stats: { clients: "500+", deliveries: "40,000+", satisfaction: "98.5%" },
+      stats: { clients: "50+", deliveries: "40+", satisfaction: "98.5%" },
       features: [
         "Site delivery and placement",
         "Crane truck services",
@@ -102,7 +102,7 @@ const Industries = () => {
         "Raw material transport, finished goods distribution, and supply chain optimization for manufacturers.",
       fullDescription:
         "Our manufacturing logistics solutions help streamline your supply chain, from raw material delivery to finished goods distribution. We integrate with your production schedules to ensure seamless operations.",
-      stats: { clients: "350+", deliveries: "60,000+", satisfaction: "99.1%" },
+      stats: { clients: "35+", deliveries: "60+", satisfaction: "99.1%" },
       features: [
         "Supply chain integration",
         "Just-in-time delivery",
@@ -136,7 +136,7 @@ const Industries = () => {
         "Efficient distribution to retail outlets, shopping centers, and direct-to-consumer delivery solutions.",
       fullDescription:
         "We power retail logistics across Australia, ensuring products reach stores and customers on time. Our network covers metro and regional areas, supporting both B2B and B2C delivery models.",
-      stats: { clients: "150+", deliveries: "100,000+", satisfaction: "97.8%" },
+      stats: { clients: "15+", deliveries: "100+", satisfaction: "97.8%" },
       features: [
         "Multi-drop delivery",
         "Last mile logistics",
@@ -170,7 +170,7 @@ const Industries = () => {
         "Transport of agricultural products, machinery, and supplies across rural and regional Australia.",
       fullDescription:
         "Supporting Australia's agricultural sector with reliable transport solutions for crops, livestock, machinery, and supplies. We understand the seasonal demands and remote locations of farming operations.",
-      stats: { clients: "180+", deliveries: "25,000+", satisfaction: "99.2%" },
+      stats: { clients: "18+", deliveries: "250+", satisfaction: "99.2%" },
       features: [
         "Bulk grain transport",
         "Livestock carriers",
@@ -202,7 +202,7 @@ const Industries = () => {
         "Specialized medical equipment transport, pharmaceutical logistics, and hospital supply chain management.",
       fullDescription:
         "Our healthcare logistics division ensures the safe and timely delivery of medical supplies, equipment, and pharmaceuticals. We maintain strict compliance with healthcare regulations and temperature control requirements.",
-      stats: { clients: "80+", deliveries: "12,000+", satisfaction: "100%" },
+      stats: { clients: "8+", deliveries: "120+", satisfaction: "100%" },
       features: [
         "Temperature monitoring",
         "Urgent deliveries",

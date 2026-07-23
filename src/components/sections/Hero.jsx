@@ -76,8 +76,8 @@ const Hero = () => {
 
   // Stats data
   const stats = [
-    { value: 50000, suffix: "+", label: "Loads Delivered", icon: Truck },
-    { value: 2500, suffix: "+", label: "Verified Trucks", icon: Shield },
+    { value: 500, suffix: "+", label: "Loads Delivered", icon: Truck },
+    { value: 20, suffix: "+", label: "Verified Trucks", icon: Shield },
     { value: 4.9, suffix: "/5", label: "Client Rating", icon: Star },
     { value: 99.8, suffix: "%", label: "On-Time Delivery", icon: Clock },
   ];
@@ -264,8 +264,8 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             Orchestrating heavy haulage, intermodal precision, and national
-            supply chains with the power of 2,500+ vehicles and real-time
-            AI-driven logistics.
+            supply chains with the power of 20+ vehicles and real-time AI-driven
+            logistics.
           </motion.p>
 
           {/* ✅ CTA Buttons - NOW CLICKABLE with Links */}
